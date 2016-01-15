@@ -1,0 +1,25 @@
+<div class="block">
+    <h1>[`Settings`]</h1>
+    <form id="wacab_settings_form" action="javascript:void(0);" method="post" onsubmit="$.wa.wacab.saveSettings(this)">
+        <div class="block fields">
+            <div class="field-group">
+                <div class="field">
+                    <div class="name">[`Dump`]</div>
+                    <div class="value">
+                        <select name="settings[dump]">
+                            <option value="0" {if isset($settings.dump) && $settings.dump == 0}selected="selected"{/if}>[`Dump off`]</option>
+                            <option value="1" {if isset($settings.dump) && $settings.dump == 1}selected="selected"{/if}>[`Dump on`]</option>
+                        </select>
+                        <br />
+                <span class="hint">
+                    [`If a dump is enabled, all files from all the cameras fall down in a heap. Home folder will not be created.`]
+                </span>
+                    </div>
+                </div>
+                <div class="field">
+                    <button id="wacab_settings_form_savebutton" class="button">[`Save`]</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
