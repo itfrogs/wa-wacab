@@ -1,4 +1,4 @@
-<div class="block">
+	<div class="block">
     <h1>[`Settings`]</h1>
     <form id="wacab_settings_form" action="javascript:void(0);" method="post" onsubmit="$.wa.wacab.saveSettings(this)">
         <div class="block fields">
@@ -16,10 +16,32 @@
                 </span>
                     </div>
                 </div>
-                <div class="field">
-                    <button id="wacab_settings_form_savebutton" class="button">[`Save`]</button>
-                </div>
             </div>
         </div>
+        <div class="block fields">
+            <div class="field-group">
+                <div class="field">
+                    <div class="name">[`Login`]</div>
+                    <div class="value">
+                    	<input name="settings[login]" type="text" value="{if isset($settings.login)}{$settings.login}{/if}"/>
+                <span class="hint">
+                    [`Login to WA customer center`]
+                </span>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="name">[`Password`]</div>
+                    <div class="value">
+                    	<input name="settings[passw]" type="password" value="{if isset($settings.passw)}{$settings.passw}{/if}"/>
+                <span class="hint">
+                    [`Password	 to WA customer center`]
+                </span>
+                    </div>
+                </div>                
+            </div>
+        </div>        
+        <div class="field">
+        	<button id="wacab_settings_form_savebutton" class="button">[`Save`]</button>
+        </div>            
     </form>
 </div>
