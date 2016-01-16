@@ -1,5 +1,17 @@
 <?php
+
+/** 
+ * Класс реализует парсинг одной страницы информации о платежах/заказах в личном кабинете WA 
+ */
+
     class wacabPaymentparseController extends waController{
+        
+        /** @param string URL конкретной страницы платежей в кабинете WA
+         *  @return array Массив значений таблицы платежей. Первым элементом массива всегда идет URL следующей страницы. 
+         *          При ее отсутствии первый элемент false    
+         * 
+         */
+        
         public static function getPayments($url){
          
             $paymaents = array();
@@ -33,7 +45,7 @@
                             'before' => substr($td[2], strpos($td[2], '>')+1, strpos($td[2], '</td>') - strpos($td[2], '>')-1),
                             'pay' => strip_tags(substr($td[3], strpos($td[3], '>')+1, strpos($td[3], '</td>') - strpos($td[3], '>')-1)),
                             'after' => substr($td[4], strpos($td[4], '>')+1, strpos($td[4], '</td>') - strpos($td[4], '>')-1),
-                            'invoice' => substr($td[5], strpos($td[5], '>')+1, strpos($td[5], '</td>') - strpos($td[5], '>')-1),
+                            'order' => substr($td[5], strpos($td[5], '>')+1, strpos($td[5], '</td>') - strpos($td[5], '>')-1),
                             'description' => substr($td[6], strpos($td[6], '>')+1, strpos($td[6], '</td>') - strpos($td[6], '>')-1)
                         );
                     }

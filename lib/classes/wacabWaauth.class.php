@@ -1,5 +1,9 @@
 <?php
 
+/*  
+ *  Класс отвечающий за авторизацию на webasyst и получение страниц
+ */
+
 class wacabWaauth {
 
     public function __construct() {
@@ -8,8 +12,10 @@ class wacabWaauth {
         $settings = $settings_model -> get('wacab');
 
         $path = wa() -> getDataPath(null, false, 'wacab');
+        
+        $cook_file = time();
 
-        $this -> data['cookies'] = $path . '/wa_auth_cookies';
+        $this -> data['cookies'] = $path . '/'.$cook_file.rand(100, 999);
         $auth_data = array('login' => $settings['login'], 'password' => $settings['passw'], 'wa_auth_login' => 1);
 
         $url = 'https://www.webasyst.ru/login/';
@@ -27,6 +33,11 @@ class wacabWaauth {
         curl_close($ch);
     }
 
+    /**
+    *  @param string $url URL страницы содержание которой необходимо получить
+     * @return array
+     * 
+    */
     public function getUrl($url) {
 
         $uagent = "Opera/9.80 (Windows NT 6.1; WOW64) Presto/2.12.388 Version/12.14";
@@ -55,5 +66,11 @@ class wacabWaauth {
         return $header;
 
     }
+
+  public function __destruct(){
+      
+      waFiles::delete($this->data['cookies']);
+      
+  }
 
 }

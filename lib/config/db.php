@@ -6,7 +6,7 @@ return array(
         'before' => array('varchar', 64, 'null' => 0),
         'pay' => array('varchar', 64, 'null' => 0),
         'after' => array('varchar', 64, 'null' => 0),
-        'invoice' => array('text'),
+        'order' => array('text'),
         'description' => array('text', 'null' => 0),
         ':keys' => array(
             'PRIMARY' => 'id',
