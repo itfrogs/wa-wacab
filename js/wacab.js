@@ -200,6 +200,8 @@ $.wa.wacab = {
 			"processing": true,
 			"serverSide": true,
 			"order": [[ 0, "desc" ]],
+			"stateSave": true,
+			"pageLength": 50,
 			"columns": [
 				{ "data": "Date" },
 				{ "data": "Before" },
