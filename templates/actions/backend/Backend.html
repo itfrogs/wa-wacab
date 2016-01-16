@@ -29,7 +29,7 @@
                     <h5 class="heading top-padded"><b>[`Navigation`]</b></h5>
                     <ul class="menu-v with-icons collapsible">
                          <li id="s-link-parser" class="menu-li">
-                             <a href="#/parser/" onclick="$.wa.wacab.parserAction()"><i class="icon16 folders"></i>[`Parser`]</a>
+                             <a href="#/parser/" onclick="$.wa.wacab.parserAction()"><i class="icon16 folders"></i>[`Transactions`]</a>
                          </li>
                          <li id="s-link-settings" class="menu-li">
                              <a href="#/settings/" onclick="$.wa.wacab.settingsAction()"><i class="icon16 settings"></i>[`Settings`]</a>
@@ -41,32 +41,6 @@
                 <div id="content">
                     <div class="block">
                         <h1>[`Main tab`]</h1>
-                        <a href="?action=getpayment">Получить данные</a>
-                        {if count($pays) > 0}
-                        <table class="zebra">
-                        	<tr class="heading">
-                        		<td>Дата</td>
-                        		<td>до</td>
-                        		<td>Сумма</td>
-                        		<td>после</td>
-                        		<td>Заказ</td>
-                        		<td>Комментарий</td>
-                        	</tr>
-                        	{foreach $pays as $pay}
-                        	<tr>
-                        	<td>{$pay['date']}</td>
-                        	<td>{$pay['before']}</td>
-                        	<td>{$pay['pay']}</td>
-                        	<td>{$pay['after']}</td>
-                        	<td>{$pay['order']}</td>
-                        	<td>{$pay['description']}</td>
-                        	</tr>
-                        	{/foreach}
-                        </table>
-                        {else}
-                        <p>Данных пока нет</p>
-                        {/if}
-                        
                     </div>
                 </div>
             </div>
