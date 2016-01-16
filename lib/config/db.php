@@ -8,23 +8,28 @@ return array(
         'after' => array('varchar', 64, 'null' => 0),
         'order' => array('text'),
         'description' => array('text', 'null' => 0),
+        'app_id' => array('int', 11, 'null' => 1),
+        ':keys' => array(
+            'PRIMARY' => 'id',
+        ),
+    ),
+
+    'wacab_apps' => array(
+        'id' => array('int', 32, 'null' => 0, 'autoincrement' => 1),
+        'name' => array('varchar', 32, 'null' => 0),
+        'regexp' => array('text', 'null' => 1),
         ':keys' => array(
             'PRIMARY' => 'id',
         ),
     ),
 );
 /*
-CREATE TABLE `wacab_payment` (
-	`id` INT(32) NOT NULL AUTO_INCREMENT,
-	`date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	`before` VARCHAR(64) NOT NULL,
-	`pay` VARCHAR(64) NOT NULL,
-	`after` VARCHAR(64) NOT NULL,
-	`order` TEXT NULL,
-	`description` TEXT NOT NULL,
-	PRIMARY KEY (`id`)
-)
-ENGINE=InnoDB
-;
+ALTER TABLE `wacab_payment` ADD COLUMN `app_id` INT(11) NULL DEFAULT NULL AFTER `description`;
 
+CREATE TABLE `wacab_apps` (
+	`id` INT(11) NOT NULL AUTO_INCREMENT,
+	`name` VARCHAR(32) NOT NULL,
+	`regexp` TEXT NULL,
+	PRIMARY KEY (`id`)
+);
  */
