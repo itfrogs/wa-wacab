@@ -6,5 +6,6 @@ class wacabBackendAction extends waViewAction
         $message = 'Приложение Webasyst Cabinet';
         $this->view->assign('message', $message);
 
+        $this->setTemplate(wacabHelper::getAppPath() . '/templates/actions/backend/Backend_page.html');
     }
 }
