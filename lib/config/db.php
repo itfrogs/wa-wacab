@@ -28,8 +28,8 @@ ALTER TABLE `wacab_payment` ADD COLUMN `app_id` INT(11) NULL DEFAULT NULL AFTER 
 
 CREATE TABLE `wacab_apps` (
 	`id` INT(11) NOT NULL AUTO_INCREMENT,
-	`name` VARCHAR(32) NOT NULL,
-	`regexp` TEXT NULL,
+	`name` VARCHAR(32) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+	`regexp` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL,
 	PRIMARY KEY (`id`)
 );
  */
