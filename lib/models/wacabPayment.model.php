@@ -25,6 +25,10 @@ class wacabPaymentModel extends waModel
 
         $order = reset($data['order']);
 
+        if (empty($order['column'])) {
+
+        }
+
         $response['recordsTotal'] = intval($this->query(
             "SELECT count(*) FROM " . $this->table
         )->fetchField());

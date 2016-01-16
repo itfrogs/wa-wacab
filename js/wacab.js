@@ -199,6 +199,7 @@ $.wa.wacab = {
 		self.dataTable = $('#wacabTransactionsTable').dataTable({
 			"processing": true,
 			"serverSide": true,
+			"order": [[ 0, "desc" ]],
 			"columns": [
 				{ "data": "Date" },
 				{ "data": "Before" },
