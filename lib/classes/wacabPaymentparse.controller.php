@@ -40,8 +40,10 @@
                 foreach($all_td as $tds){
                     $td = explode('<td', $tds);
                     if(isset($td[1])){
+                        $str_date = substr($td[1], strpos($td[1], '>')+1, strpos($td[1], '</td>') - strpos($td[1], '>')-1).':00';
+                        $str_date = date("Y-m-d H:i:s", strtotime($str_date));
                         $payments[] = array(
-                            'date' => substr($td[1], strpos($td[1], '>')+1, strpos($td[1], '</td>') - strpos($td[1], '>')-1), 
+                            'date' => $str_date, 
                             'before' => substr($td[2], strpos($td[2], '>')+1, strpos($td[2], '</td>') - strpos($td[2], '>')-1),
                             'pay' => strip_tags(substr($td[3], strpos($td[3], '>')+1, strpos($td[3], '</td>') - strpos($td[3], '>')-1)),
                             'after' => substr($td[4], strpos($td[4], '>')+1, strpos($td[4], '</td>') - strpos($td[4], '>')-1),
