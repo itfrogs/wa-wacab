@@ -11,23 +11,17 @@ class wacabGettableController extends waController
 
     public function execute()
     {
+        $data['order'] = waRequest::request('order');
+        $data['start'] = waRequest::request('start', 0, 'int');
+        $data['draw'] = waRequest::request('draw', 1, 'int');
+        $data['length'] = waRequest::request('length', 10, 'int');
+        $data['search'] = waRequest::request('search');
+
         $payment_model = new wacabPaymentModel();
-        $results = $payment_model->query('SELECT * FROM wacab_payment ORDER BY date DESC')->fetchAll();
-        $responce = array(
-            'data' => array(),
-        );
-        foreach ($results AS $i => $result) {
-            $responce['data'][] = array(
-                'Date' => $result['date'],
-                'Before' => $result['before'],
-                'Pay' => $result['pay'],
-                'After' => $result['after'],
-                'Order' => $result['order'],
-                'App' => $result['app_id'],
-                'Description' => $result['description'],
-            );
-        }
-        print json_encode($responce);
+
+        $response = $payment_model->getDataTable($data);
+
+        print json_encode($response);
     }
 
 }
