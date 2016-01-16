@@ -11,7 +11,7 @@ class wacabWaauth {
         $settings_model = new waAppSettingsModel();
         $settings = $settings_model -> get('wacab');
 
-        $path = wa() -> getDataPath(null, false, 'wacab');
+        $path = wa() -> getTempPath(null, 'wacab');
         
         $cook_file = time();
 
