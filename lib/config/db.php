@@ -13,3 +13,18 @@ return array(
         ),
     ),
 );
+/*
+CREATE TABLE `wacab_payment` (
+	`id` INT(32) NOT NULL AUTO_INCREMENT,
+	`date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	`before` VARCHAR(64) NOT NULL,
+	`pay` VARCHAR(64) NOT NULL,
+	`after` VARCHAR(64) NOT NULL,
+	`order` TEXT NULL,
+	`description` TEXT NOT NULL,
+	PRIMARY KEY (`id`)
+)
+ENGINE=InnoDB
+;
+
+ */

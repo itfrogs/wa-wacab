@@ -97,10 +97,15 @@ $.wa.wacab = {
 		$.wa.setHash(hash);
 	},
 	parserAction: function () {
-		//alert('servers');
 		this.savePanel(false);
 		$("#content").load('?module=parser', function () {
 			$.wa.wacab.active($("#s-link-parser"));
+		});
+	},
+	transactionsAction: function () {
+		this.savePanel(false);
+		$("#content").load('?module=transactions', function () {
+			$.wa.wacab.active($("#s-link-transactions"));
 		});
 	},
 	settingsAction: function () {

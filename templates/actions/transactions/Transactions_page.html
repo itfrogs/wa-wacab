@@ -1,0 +1,32 @@
+<div class="block">
+	<h1>[`Transactions`]</h1>
+	<div id="wacab_parser_container">
+		{if count($pays) > 0}
+		<table class="zebra">
+			<tr class="heading">
+				<td>Дата</td>
+				<td>до</td>
+				<td>Сумма</td>
+				<td>после</td>
+				<td>Заказ</td>
+				<td>Комментарий</td>
+			</tr>
+			{foreach $pays as $pay}
+			<tr>
+				<td>{$pay['date']}</td>
+				<td>{$pay['before']}</td>
+				<td>{$pay['pay']}</td>
+				<td>{$pay['after']}</td>
+				<td>{$pay['order']}</td>
+				<td>{$pay['description']}</td>
+			</tr>
+			{/foreach}
+		</table>
+		{else}
+		<p>
+			Данных о транзакциях пока нет
+		</p>
+		{/if}
+
+	</div>
+</div>
