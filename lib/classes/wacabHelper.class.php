@@ -1,5 +1,4 @@
 <?php
-
 class wacabHelper
 {
     public static function getEmail($contact, $all = false)
@@ -16,7 +15,6 @@ class wacabHelper
             }
         }
     }
-
     public static function getAppPath() {
         return wa()->getAppPath(null, 'wacab');
     }
