@@ -241,6 +241,12 @@ $.wa.wacab = {
 			},
 			"ajax": '?module=gettable'
 		});
+
+		self.dataTable.on( 'draw.dt', function (e, settings) {
+			var api = self.dataTable.api();
+			var data = api.ajax.json();
+			$('#wacab_sum').html(data.sum);
+		} );
 	}
 };
 })(jQuery);
