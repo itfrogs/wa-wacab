@@ -1,5 +1,8 @@
+
 <div class="block">
 	<h1>[`Transactions`]</h1>
+	<input id="check-new" type="button" class="button blue" value="Что там новенького">
+	<img id="iproc" style="display: none;" src="{$wa_url}wa-content/img/loading32.gif">
 	<div id="wacab_parser_container">
 		{if count($pays) > 0}
 
@@ -17,7 +20,7 @@
 				</thead>
 
 				<tfoot>
-				<tr>
+				<tr class="tr">
 					<th style="width: 10%">[`Date`]</th>
 					<th style="width: 10%">[`Before`]</th>
 					<th style="width: 10%">[`Pay`]</th>
@@ -38,5 +41,18 @@
 </div>
 
 <script>
+	$('#check-new').click(function(){
+		$('#check-new').hide();
+		$('#iproc').show();
+		$("tr.even").remove();
+		$("tr.odd").remove();
+		$.get('?action=getpayment', function(){
+			$('div#wacab_parser_container').empty();
+			$('div#wacab_parser_container').append('<table id="wacabTransactionsTable" class="display" cellspacing="0" width="100%">	<tr>			<th style="width: 10%">[`Date`]</th>				<th style="width: 10%">[`Before`]</th>					<th style="width: 10%">[`Pay`]</th>					<th style="width: 10%">[`After`]</th>					<th style="width: 10%">[`Order`]</th>					<th style="width: 20%">[`App`]</th>					<th style="width: 30%">[`Description`]</th>				</tr>				</thead>				<tfoot>				<tr class="tr">					<th style="width: 10%">[`Date`]</th>					<th style="width: 10%">[`Before`]</th>					<th style="width: 10%">[`Pay`]</th>					<th style="width: 10%">[`After`]</th>					<th style="width: 10%">[`Order`]</th>					<th style="width: 20%">[`App`]</th>					<th style="width: 30%">[`Description`]</th>				</tr>				</tfoot>			</table>');
+			$.wa.wacab.initDataTable();
+			$('#check-new').show();
+			$('#iproc').hide();
+		});
+	});
 	$.wa.wacab.initDataTable();
 </script>
