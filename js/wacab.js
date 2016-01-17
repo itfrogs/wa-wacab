@@ -97,12 +97,6 @@ $.wa.wacab = {
 		var hash = $("div.sidebar ul.menu-v a:first").attr('href');
 		$.wa.setHash(hash);
 	},
-	parserAction: function () {
-		this.savePanel(false);
-		$("#content").load('?module=parser', function () {
-			$.wa.wacab.active($("#s-link-parser"));
-		});
-	},
 	transactionsAction: function () {
 		this.savePanel(false);
 		$("#content").load('?module=transactions', function () {
