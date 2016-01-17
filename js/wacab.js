@@ -240,7 +240,15 @@ $.wa.wacab = {
 			var api = self.dataTable.api();
 			var data = api.ajax.json();
 			$('#wacab_sum').html(data.sum);
-		} );
+		});
+
+		$('#check-new').click(function(){
+			$.get('?action=getpayment', function(){
+				$.wa.wacab.dataTable.api().draw();
+				$('#check-new').show();
+				$('#iproc').hide();
+			});
+		});
 	}
 };
 })(jQuery);

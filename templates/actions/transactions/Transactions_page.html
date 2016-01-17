@@ -7,56 +7,35 @@
 		Total: <strong id="wacab_sum"></strong>
 	</div>
 	<div id="wacab_parser_container">
-		{if count($pays) > 0}
+		<table id="wacabTransactionsTable" class="display" cellspacing="0" width="100%">
+			<thead>
+			<tr>
+				<th style="width: 10%">[`Date`]</th>
+				<th style="width: 10%">[`Before`]</th>
+				<th style="width: 10%">[`Pay`]</th>
+				<th style="width: 10%">[`After`]</th>
+				<th style="width: 10%">[`Order`]</th>
+				<th style="width: 20%">[`App`]</th>
+				<th style="width: 30%">[`Description`]</th>
+			</tr>
+			</thead>
 
-			<table id="wacabTransactionsTable" class="display" cellspacing="0" width="100%">
-				<thead>
-				<tr>
-					<th style="width: 10%">[`Date`]</th>
-					<th style="width: 10%">[`Before`]</th>
-					<th style="width: 10%">[`Pay`]</th>
-					<th style="width: 10%">[`After`]</th>
-					<th style="width: 10%">[`Order`]</th>
-					<th style="width: 20%">[`App`]</th>
-					<th style="width: 30%">[`Description`]</th>
-				</tr>
-				</thead>
-
-				<tfoot>
-				<tr class="tr">
-					<th style="width: 10%">[`Date`]</th>
-					<th style="width: 10%">[`Before`]</th>
-					<th style="width: 10%">[`Pay`]</th>
-					<th style="width: 10%">[`After`]</th>
-					<th style="width: 10%">[`Order`]</th>
-					<th style="width: 20%">[`App`]</th>
-					<th style="width: 30%">[`Description`]</th>
-				</tr>
-				</tfoot>
-			</table>
-		{else}
-		<p>
-			Данных о транзакциях пока нет
-		</p>
-		{/if}
+			<tfoot>
+			<tr class="tr">
+				<th style="width: 10%">[`Date`]</th>
+				<th style="width: 10%">[`Before`]</th>
+				<th style="width: 10%">[`Pay`]</th>
+				<th style="width: 10%">[`After`]</th>
+				<th style="width: 10%">[`Order`]</th>
+				<th style="width: 20%">[`App`]</th>
+				<th style="width: 30%">[`Description`]</th>
+			</tr>
+			</tfoot>
+		</table>
 
 	</div>
 </div>
 
 <script>
-	$('#check-new').click(function(){
-		$('#check-new').hide();
-		$('#iproc').show();
-		$("tr.even").remove();
-		$("tr.odd").remove();
-		$.get('?action=getpayment', function(){
-			//$('div#wacab_parser_container').empty();
-			//$('div#wacab_parser_container').append('<table id="wacabTransactionsTable" class="display" cellspacing="0" width="100%">	<tr>			<th style="width: 10%">[`Date`]</th>				<th style="width: 10%">[`Before`]</th>					<th style="width: 10%">[`Pay`]</th>					<th style="width: 10%">[`After`]</th>					<th style="width: 10%">[`Order`]</th>					<th style="width: 20%">[`App`]</th>					<th style="width: 30%">[`Description`]</th>				</tr>				</thead>				<tfoot>				<tr class="tr">					<th style="width: 10%">[`Date`]</th>					<th style="width: 10%">[`Before`]</th>					<th style="width: 10%">[`Pay`]</th>					<th style="width: 10%">[`After`]</th>					<th style="width: 10%">[`Order`]</th>					<th style="width: 20%">[`App`]</th>					<th style="width: 30%">[`Description`]</th>				</tr>				</tfoot>			</table>');
-			//$.wa.wacab.initDataTable();
-			$.wa.wacab.dataTable.api().draw();
-			$('#check-new').show();
-			$('#iproc').hide();
-		});
-	});
 	$.wa.wacab.initDataTable();
 </script>
