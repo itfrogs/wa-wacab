@@ -44,10 +44,14 @@ class wacabPaymentModel extends waModel
         );
         $results->fetchAll();
 
-        $response['recordsFiltered'] = intval($this->query(
-            "SELECT p.*, a.name AS app_name FROM " . $this->table . " p JOIN wacab_apps a ON p.app_id = a.id
+
+        $counts = $this->query(
+            "SELECT COUNT(p.id) AS count, SUM(p.pay) AS sum FROM " . $this->table . " p LEFT JOIN wacab_apps a ON p.app_id = a.id
             WHERE p.order LIKE ? OR p.description LIKE ?", $searchstring, $searchstring
-        )->fetchField());
+        )->fetchAssoc();
+
+        $response['recordsFiltered'] = $counts['count'];
+        $response['sum'] = $counts['sum'];
 
         foreach ($results AS $i => $result) {
             $response['data'][] = array(
@@ -65,3 +69,4 @@ class wacabPaymentModel extends waModel
 }
 
 
+//, SUM(p.pay) AS sum
