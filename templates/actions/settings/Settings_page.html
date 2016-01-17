@@ -30,7 +30,35 @@
                     [`Pay account`]
                 </span>
                     </div>
-                </div>                
+                </div>
+                <hr />                
+                <div class="field">
+                    <div class="name">[`Counter`]</div>
+                    <div class="value">
+                    	<select name="settings[count]">
+                    		<option value='1' {if isset($settings.count) && $settings.count == 1}selected="selected"{/if}>[`On`]</option>
+                    		<option value='0' {if isset($settings.count) && $settings.count == 0}selected="selected"{/if}>[`Off`]</option>
+                    	</select>
+                    		&nbsp;&nbsp;&nbsp;&nbsp;
+                    	<select name="settings[timeout]">
+                    		 <option value="10" {if isset($settings.timeout) && $settings.timeout == 10}selected="selected"{/if}>10 [`min`]</option>
+                    		 <option value="15" {if isset($settings.timeout) && $settings.timeout == 15}selected="selected"{/if}>15 [`min`]</option>
+                    		 <option value="30" {if isset($settings.timeout) && $settings.timeout == 30}selected="selected"{/if}>30 [`min`]</option>
+                    		 <option value="60" {if isset($settings.timeout) && $settings.timeout == 60}selected="selected"{/if}>60 [`min`]</option>
+                    		 <option value="90" {if isset($settings.timeout) && $settings.timeout == 90}selected="selected"{/if}>90 [`min`]</option>
+                    		 <option value="120" {if isset($settings.timeout) && $settings.timeout == 120}selected="selected"{/if}>120 [`min`]</option>
+                    		 <option value="180" {if isset($settings.timeout) && $settings.timeout == 180}selected="selected"{/if}>180 [`min`]</option>
+                    		 <option value="240" {if isset($settings.timeout) && $settings.timeout == 240}selected="selected"{/if}>240 [`min`]</option>
+                    		 <option value="360" {if isset($settings.timeout) && $settings.timeout == 360}selected="selected"{/if}>360 [`min`]</option>
+                    	</select>
+                    	
+                    <div class="value">
+                    </div>
+                		<span class="hint">
+		                    [`Enable counter on icon spp`]
+        		        </span>
+                    </div>
+                
             </div>
         </div>        
         <div class="field">

@@ -243,7 +243,7 @@ $.wa.wacab = {
 		});
 
 		$('#check-new').click(function(){
-			$.get('?action=getpayment', function(){
+			$.get('?action=getpaymentjson', function(){
 				$.wa.wacab.dataTable.api().draw();
 				$('#check-new').show();
 				$('#iproc').hide();

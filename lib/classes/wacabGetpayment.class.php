@@ -1,5 +1,5 @@
 <?php
-    class wacabBackendGetpaymentController extends waController{
+    class wacabGetpayment{
 
         /**
          *  Получение и обработка данных оп платежах из кабинета WA
@@ -7,11 +7,11 @@
          *  либо пока не будет найден платеж который уже есть в БД в таблице wacab_payments
          */
          
-        public function execute(){
+        public function getPayment(){
             $settings_model = new waAppSettingsModel();
             $settings = $settings_model -> get('wacab');   
             $model = new wacabPaymentModel();
-            
+            $count = 0;
             while(true){
             
                 if(!isset($url)){
@@ -30,6 +30,7 @@
                     }
                     
                     $model->insert($pay);
+                    $count ++;
                 }
                 
                 if($url == 'false'){
@@ -37,7 +38,7 @@
                 }
                 
             }
-             
-            return;           
+           
+            return $count;           
         }
     }
