@@ -3,9 +3,9 @@ return array(
     'wacab_payment' => array(
         'id' => array('int', 32, 'null' => 0, 'autoincrement' => 1),
         'date' => array('timestamp', 'null' => 0, 'default' => 'CURRENT_TIMESTAMP'),
-        'before' => array('varchar', 64, 'null' => 0),
-        'pay' => array('varchar', 64, 'null' => 0),
-        'after' => array('varchar', 64, 'null' => 0),
+        'before' => array('float', 'null' => 0),
+        'pay' => array('float', 'null' => 0),
+        'after' => array('float', 'null' => 0),
         'order' => array('text'),
         'description' => array('text', 'null' => 0),
         'app_id' => array('int', 11, 'null' => 1),
@@ -32,4 +32,9 @@ CREATE TABLE `wacab_apps` (
 	`regexp` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL,
 	PRIMARY KEY (`id`)
 );
+  
+ALTER TABLE  `wacab_payment` CHANGE  `before`  `before` FLOAT NOT NULL
+ALTER TABLE  `wacab_payment` CHANGE  `pay`  `before` FLOAT NOT NULL
+ALTER TABLE  `wacab_payment` CHANGE  `after`  `before` FLOAT NOT NULL
+  
  */
