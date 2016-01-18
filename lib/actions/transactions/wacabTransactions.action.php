@@ -18,6 +18,9 @@ class wacabTransactionsAction extends waViewAction
             $settings_model->set('wacab', 'new_count', 0);
         }
         
+        $apps_count = wa()->getStorage()->read('apps-count');
+        unset($apps_count['wacab']);
+        wa()->getStorage()->set('apps-count', $apps_count);
 //        $new = new wacabGetpayment();
 //        $ps = $new->getPayment();
         
