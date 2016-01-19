@@ -8,33 +8,59 @@ return array(
         'after' => array('float', 'null' => 0),
         'order' => array('text'),
         'description' => array('text', 'null' => 0),
-        'app_id' => array('int', 11, 'null' => 1),
+        'app_id' => array('int', 11),
         ':keys' => array(
             'PRIMARY' => 'id',
         ),
     ),
-
     'wacab_apps' => array(
-        'id' => array('int', 32, 'null' => 0, 'autoincrement' => 1),
+        'id' => array('int', 11, 'null' => 0, 'autoincrement' => 1),
         'name' => array('varchar', 32, 'null' => 0),
-        'regexp' => array('text', 'null' => 1),
+        'regexp' => array('text'),
+        ':keys' => array(
+            'PRIMARY' => 'id',
+        ),
+    ),
+    'wacab_review' => array(
+        'id' => array('int', 32, 'null' => 0, 'autoincrement' => 1),
+        'date' => array('date', 'null' => 0),
+        'app' => array('text', 'null' => 0),
+        'author' => array('text', 'null' => 0),
+        'version' => array('varchar', 32, 'null' => 0),
+        'rating' => array('int', 8, 'null' => 0),
+        'text' => array('text', 'null' => 0),
+        'vote' => array('varchar', 8, 'null' => 0),
+        'rv_id' => array('varchar', 16, 'null' => 0),
         ':keys' => array(
             'PRIMARY' => 'id',
         ),
     ),
 );
+
 /*
 ALTER TABLE `wacab_payment` ADD COLUMN `app_id` INT(11) NULL DEFAULT NULL AFTER `description`;
-
 CREATE TABLE `wacab_apps` (
-	`id` INT(11) NOT NULL AUTO_INCREMENT,
-	`name` VARCHAR(32) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-	`regexp` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL,
-	PRIMARY KEY (`id`)
+    `id` INT(11) NOT NULL AUTO_INCREMENT,
+    `name` VARCHAR(32) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+    `regexp` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL,
+    PRIMARY KEY (`id`)
 );
   
 ALTER TABLE  `wacab_payment` CHANGE  `before`  `before` FLOAT NOT NULL
-ALTER TABLE  `wacab_payment` CHANGE  `pay`  `before` FLOAT NOT NULL
-ALTER TABLE  `wacab_payment` CHANGE  `after`  `before` FLOAT NOT NULL
+ALTER TABLE  `wacab_payment` CHANGE  `pay`  `pay` FLOAT NOT NULL
+ALTER TABLE  `wacab_payment` CHANGE  `after`  `after` FLOAT NOT NULL
+
+CREATE TABLE  `wacab_review` (
+`id` INT( 32 ) NOT NULL AUTO_INCREMENT ,
+ `date` DATE NOT NULL ,
+ `app` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL ,
+ `author` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL ,
+ `version` VARCHAR( 32 ) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL ,
+ `rating` INT( 8 ) NOT NULL ,
+ `text` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL ,
+ `vote` VARCHAR( 8 ) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL ,
+ `rv_id` VARCHAR( 16 ) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL ,
+PRIMARY KEY (  `id` )
+) ENGINE = INNODB DEFAULT CHARSET = latin1; 
   
  */

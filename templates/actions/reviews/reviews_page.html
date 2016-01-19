@@ -1,0 +1,43 @@
+<div class="block">
+	<h1>[`Reviews`]</h1>
+	<input id="check-new-rv" type="button" class="button blue" value="Что там новенького">
+	<img id="iproc" style="display: none;" src="{$wa_url}wa-content/img/loading32.gif">
+
+	<table class="zebra">
+		<tbody>
+			<tr>
+				<td style="width: 8%">[`Date`]</td>
+				<td>[`App`]</td>
+				<td>[`Author`]</td>
+				<td>[`Version`]</td>
+				<td>[`Rating`]</td>
+				<td>[`Text`]</td>
+				<td>[`Vote`]</td>
+			</tr>
+			{foreach $reviews as $review}
+			<tr>
+				<td>{$review['date']}</td>
+				<td>{$review['app']}</td>
+				<td>{$review['author']}</td>
+				<td>{$review['version']}</td>
+				<td style="width:10%;">{for $i=1; $i <= $review['rating']; $i++}<i class="icon16 star"></i>{/for}</td>
+				<td>{$review['text']}</td>
+				<td>{$review['vote']}</td>
+			</tr>
+			{/foreach}
+		</tbody>
+	</table>
+</div>
+
+<script>
+$(document).ready(function (){
+$('#check-new-rv').click(function(){
+	$('#check-new-rv').hide();
+	$('#iproc').show();
+	$.get('?action=getreviewsjson', function(data){
+		$('#check-new-rv').show();
+		$('#iproc').hide();
+	});
+});	
+});
+</script>

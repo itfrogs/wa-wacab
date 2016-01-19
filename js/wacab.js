@@ -110,6 +110,12 @@ $.wa.wacab = {
             $.wa.wacab.active($("#s-link-settings"));
         });
 	},
+	reviewsAction: function () {
+		this.savePanel(false);
+        $("#content").load('?module=reviews', function () {
+            $.wa.wacab.active($("#s-link-reviews"));
+        });
+	},	
 	active: function (el) {
 		$(".menu-li").removeClass('selected');
 		if (el && el.length) {
