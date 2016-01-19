@@ -22,9 +22,10 @@ class wacabConfig extends waAppConfig{
         if(time() - $settings['count_ts'] < $settings['timeout'] * 60 ){
             return null;
         }
- 
+
+        $auth = new wacabWaauth();
         $new = new wacabGetpayment();
-        $ps = $new->getPayment();
+        $ps = $new->getPayment($auth);
 
         if(isset($settings['new_count'])){
             $newcount = $settings['new_count'] + $ps;
@@ -34,6 +35,7 @@ class wacabConfig extends waAppConfig{
         $settings_model->set('wacab', 'new_count', $newcount);
         $settings['count_ts'] = time();
 
+        unset($auth);
         return array(
             'count' => $newcount,
             'url' => wa()->getUrl(true).'wacab/#/transactions/'

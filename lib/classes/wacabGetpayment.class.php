@@ -5,12 +5,12 @@
          *  Получение и обработка данных оп платежах из кабинета WA
          *  Получение и обработка идет до тех пор, пока не будут обраотаны либо все страницы
          *  либо пока не будет найден платеж который уже есть в БД в таблице wacab_payments
+         *  @param object wacabWaauth
          */
          
-        public function getPayment(){
+        public function getPayment($auth){
             $settings_model = new waAppSettingsModel();
             $settings = $settings_model -> get('wacab');
-            $auth = new wacabWaauth();
             $model = new wacabPaymentModel();
             $count = 0;
             while(true){

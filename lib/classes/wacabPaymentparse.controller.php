@@ -18,7 +18,6 @@
             $paymaents = array();
             
             $source = $auth->getUrl($url);
-            unset($auth);
             
             $np_source = strpos($source['content'], 'class="menu-h float-left">');
             $np_ul = substr($source['content'], $np_source, strpos($source['content'], '</ul>') - $np_source);

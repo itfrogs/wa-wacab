@@ -7,8 +7,10 @@
          
         public function execute(){
             
+        $auth = new wacabWaauth();
         $new = new wacabGetreviews();
-        $ps = $new->getReviews();
+        $ps = $new->getReviews($auth);
+        unset($auth);
 
         $this->response = $ps;
             
