@@ -7,16 +7,16 @@
     class wacabPaymentparseController extends waController{
         
         /** @param string URL конкретной страницы платежей в кабинете WA
+         *  @param object wacabWaauth
          *  @return array Массив значений таблицы платежей. Первым элементом массива всегда идет URL следующей страницы. 
          *          При ее отсутствии первый элемент false    
          * 
          */
         
-        public static function getPayments($url){
+        public static function getPayments($url, $auth){
          
             $paymaents = array();
             
-            $auth = new wacabWaauth();
             $source = $auth->getUrl($url);
             unset($auth);
             

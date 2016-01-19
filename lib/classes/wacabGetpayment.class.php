@@ -9,7 +9,8 @@
          
         public function getPayment(){
             $settings_model = new waAppSettingsModel();
-            $settings = $settings_model -> get('wacab');   
+            $settings = $settings_model -> get('wacab');
+            $auth = new wacabWaauth();
             $model = new wacabPaymentModel();
             $count = 0;
             while(true){
@@ -18,7 +19,7 @@
                     $url = 'https://www.webasyst.ru/my/?action=checkingaccountInfo&id='.$settings['account'];
                 }
 
-                $pays = wacabPaymentparseController::getPayments($url);
+                $pays = wacabPaymentparseController::getPayments($url, $auth);
 
                 $url = $pays[0];
                 unset($pays[0]);
