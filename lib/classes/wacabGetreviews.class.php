@@ -32,7 +32,6 @@
                     $exist_rv = $model->getByField($check_rv);
                     if(count($exist_rv) > 0){
                         if($rv['date'] == $exist_rv['date'] && $rv['text'] == $exist_rv['text']){
-echo "sadasdfasdf";                            
                             break 2;
                         }else{
                             $model->updateById($exist_rv['id'], $rv);

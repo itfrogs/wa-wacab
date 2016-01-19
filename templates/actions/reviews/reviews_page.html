@@ -37,6 +37,7 @@ $('#check-new-rv').click(function(){
 	$.get('?action=getreviewsjson', function(data){
 		$('#check-new-rv').show();
 		$('#iproc').hide();
+		location.reload();
 	});
 });	
 });
