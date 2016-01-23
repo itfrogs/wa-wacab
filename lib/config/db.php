@@ -8,14 +8,15 @@ return array(
         'after' => array('float', 'null' => 0),
         'order' => array('text'),
         'description' => array('text', 'null' => 0),
-        'app_id' => array('int', 11),
+        'apps_id' => array('int', 11),
         ':keys' => array(
             'PRIMARY' => 'id',
         ),
     ),
     'wacab_apps' => array(
         'id' => array('int', 11, 'null' => 0, 'autoincrement' => 1),
-        'name' => array('varchar', 32, 'null' => 0),
+        'app_id' => array('varchar', 32, 'null' => 0),
+        'plugin_id' => array('varchar', 32, 'null' => 0),
         'regexp' => array('text'),
         ':keys' => array(
             'PRIMARY' => 'id',
@@ -62,5 +63,12 @@ CREATE TABLE  `wacab_review` (
  `rv_id` VARCHAR( 16 ) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL ,
 PRIMARY KEY (  `id` )
 ) ENGINE = INNODB DEFAULT CHARSET = latin1; 
-  
+
+ALTER TABLE  `wacab_apps` CHANGE  `name`  `app_id` VARCHAR( 32 ) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL; 
+ALTER TABLE  `wacab_apps` ADD  `plugin_id` VARCHAR( 32 ) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL AFTER  `app_id`;
+ALTER TABLE  `wacab_payment` CHANGE  `app_id`  `apps_id` INT( 11 ) NULL DEFAULT NULL;
+    
+      
+      
+      
  */
