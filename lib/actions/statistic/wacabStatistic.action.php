@@ -23,6 +23,7 @@ class wacabStatisticAction extends waViewAction
             $names = json_decode($app['regexp'], true);
             $plugins_stat[] = array(
                 'name' => $names[0],
+                'total' => round($app_total[0], 2),
                 'total' => $app_total[0],
                 'count' => $app_count[0],
                 'return' => $app_return[0],
