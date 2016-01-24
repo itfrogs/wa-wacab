@@ -1,14 +1,11 @@
 <div class="block">
 	<h1>[`Apps`]</h1>
 
-	<div id="wacab-app-table">
+	<div id="wacab_apps_container">
 		{include file="./apps_table.html" inline}
 	</div>
 
-	<form method="post" action="?module=apps&action=add">
-		[`App ID`]<input name="app_id" type="text">
-		[`Plugin ID`]<input name="plugin_id" type="text">
-		[`Name`]<input name="name" type="text">
-		<input type="submit" class="button blue" value="[`Add app`]" />
-	</form>
+	<div id="wacab_apps_form_container">
+		{include file="./apps_form.html" inline}
+	</div>
 </div>

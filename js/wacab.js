@@ -148,46 +148,21 @@ $.wa.wacab = {
 			$("#s-save-panel").hide();
 		}
 	},
-	saveServer: function(el) {
-		var self = this;
-		form = $(el);
-		var data = form.serialize();
-		$.get("?module=servers&action=save&" + data, function (response) {
+	deleteApp: function(id) {
+		$.post("?module=appss&action=delete", {id: id}, function (response) {
 			if(response.status == 'ok') {
-				$('#wacab_servers_container').html(response.data.servers);
-				$('#wacab_servers_form_container').html(response.data.form);
-				$('#wacab_servers_form_savebutton').addClass('green');
-			}
-			else {
-				$('#wacab_servers_form_savebutton').removeClass('green').addClass('red');
-			}
-		}, "json");
-	},
-	deleteServer: function(id) {
-		$.post("?module=servers&action=delete", {id: id}, function (response) {
-			if(response.status == 'ok') {
-				$('#wacab_servers_container').html(response.data.template);
-				$('#wacab_servers_form_savebutton').removeClass('green').removeClass('red');
+				$('#wacab_apps_container').html(response.data.template);
+				$('#wacab_apps_form_savebutton').removeClass('green').removeClass('red');
 			}
 			else {
 			}
 		}, "json");
 	},
-	busyServer: function(id) {
-		$.post("?module=servers&action=busy", {id: id}, function (response) {
+	editApp: function(id) {
+		$.post("?module=apps&action=edit", {id: id}, function (response) {
 			if(response.status == 'ok') {
-				$('#wacab_servers_container').html(response.data.template);
-				$('#wacab_servers_form_savebutton').removeClass('green').removeClass('red');
-			}
-			else {
-			}
-		}, "json");
-	},
-	editServer: function(id) {
-		$.post("?module=servers&action=edit", {id: id}, function (response) {
-			if(response.status == 'ok') {
-				$('#wacab_servers_form_container').html(response.data.template);
-				$('#wacab_servers_form_savebutton').removeClass('green').removeClass('red');
+				$('#wacab_apps_form_container').html(response.data.template);
+				$('#wacab_apps_form_savebutton').removeClass('green').removeClass('red');
 			}
 			else {
 			}

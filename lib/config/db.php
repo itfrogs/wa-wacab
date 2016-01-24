@@ -16,8 +16,8 @@ return array(
     'wacab_apps' => array(
         'id' => array('int', 11, 'null' => 0, 'autoincrement' => 1),
         'app_id' => array('varchar', 32, 'null' => 0),
-        'plugin_id' => array('varchar', 32, 'null' => 0),
-        'regexp' => array('text'),
+        'type' => array('varchar', 32, 'null' => 1),
+        'name' => array('varchar', 50, 'null' => 0),
         ':keys' => array(
             'PRIMARY' => 'id',
         ),
@@ -68,7 +68,12 @@ ALTER TABLE  `wacab_apps` CHANGE  `name`  `app_id` VARCHAR( 32 ) CHARACTER SET u
 ALTER TABLE  `wacab_apps` ADD  `plugin_id` VARCHAR( 32 ) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL AFTER  `app_id`;
 ALTER TABLE  `wacab_payment` CHANGE  `app_id`  `apps_id` INT( 11 ) NULL DEFAULT NULL;
     
-      
-      
+ALTER TABLE `wacab_apps` CHANGE COLUMN `plugin_id` `name` VARCHAR(32) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci' AFTER `app_id`, DROP COLUMN `regexp`;
+ALTER TABLE `wacab_apps` ALTER `name` DROP DEFAULT;
+ALTER TABLE `wacab_apps` CHANGE COLUMN `name` `names` TEXT NOT NULL COLLATE 'utf8_unicode_ci' AFTER `app_id`;
+ALTER TABLE `wacab_apps` ADD COLUMN `type` VARCHAR(32) NOT NULL AFTER `app_id`;
+ALTER TABLE `wacab_apps` ADD COLUMN `parent` VARCHAR(32) NOT NULL AFTER `app_id`, CHANGE COLUMN `names` `name` TEXT NOT NULL COLLATE 'utf8_unicode_ci' AFTER `type`;
+ALTER TABLE `wacab_apps` DROP COLUMN `parent`;
+ALTER TABLE `wacab_apps` CHANGE COLUMN `name` `name` VARCHAR(50) NOT NULL COLLATE 'utf8_unicode_ci' AFTER `type`;
       
  */

@@ -1,17 +1,21 @@
 <table class="zebra">
     <tbody>
     <tr>
-        <td>[`Id`]</td>
-        <td>[`App ID`]</td>
-        <td>[`Plugin ID`]</td>
-        <td>[`Regexp`]</td>
+        <th>[`Id`]</th>
+        <th>[`App ID`]</th>
+        <th>[`Plugin ID`]</th>
+        <th>[`Regexp`]</th>
+        <th width="2%">[`Edit`]</th>
+        <th width="2%">[`Delete`]</th>
     </tr>
     {foreach $apps as $app}
         <tr>
             <td>{$app['id']}</td>
             <td>{$app['app_id']}</td>
-            <td>{$app['plugin_id']}</td>
-            <td>{$app['regexp']}</td>
+            <td>{$app['type']}</td>
+            <td>{$app['name']}</td>
+            <td><a href="javascript:void(0);" onclick="$.wa.wacab.editApp({$app.id})"><i class="icon16 edit"></i></a</td>
+            <td><a href="javascript:void(0);" onclick="$.wa.wacab.deleteApp({$server.id})"><i class="icon16 delete"></i></a></td>
         </tr>
     {/foreach}
     </tbody>
