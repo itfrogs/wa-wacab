@@ -36,8 +36,8 @@ class wacabPaymentModel extends waModel
         $searchstring = '%' . $data['search']['value'] . '%';
 
         $results = $this->query(
-            "SELECT p.*, a.plugin_id AS app_name FROM " . $this->table . " p LEFT JOIN wacab_apps a ON p.app_id = a.id
-            WHERE (p.order LIKE ? OR p.description LIKE ?) AND p.pay > 0
+            "SELECT p.*, a.plugin_id AS app_name FROM " . $this->table . " p LEFT JOIN wacab_apps a ON p.apps_id = a.id
+            WHERE (p.order LIKE ? OR p.description LIKE ?) 
             ORDER BY " . $columns[intval($order['column'])] . " " . $this->escape($order['dir']) . "
             LIMIT " . intval($data['start']) . ", " . intval($data['length']), $searchstring, $searchstring
 
@@ -46,8 +46,8 @@ class wacabPaymentModel extends waModel
 
 
         $counts = $this->query(
-            "SELECT COUNT(p.id) AS count, SUM(p.pay) AS sum FROM " . $this->table . " p LEFT JOIN wacab_apps a ON p.app_id = a.id
-            WHERE (p.order LIKE ? OR p.description LIKE ?) AND p.pay > 0", $searchstring, $searchstring
+            "SELECT COUNT(p.id) AS count, SUM(p.pay) AS sum FROM " . $this->table . " p LEFT JOIN wacab_apps a ON p.apps_id = a.id
+            WHERE (p.order LIKE ? OR p.description LIKE ?) ", $searchstring, $searchstring
         )->fetchAssoc();
 
         $response['recordsFiltered'] = $counts['count'];
@@ -60,7 +60,7 @@ class wacabPaymentModel extends waModel
                 'Pay' => $result['pay'],
                 'After' => $result['after'],
                 'Order' => $result['order'],
-                'App' => $result['app_id'],
+                'App' => $result['apps_id'],
                 'Description' => $result['description'],
             );
         }
