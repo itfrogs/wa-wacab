@@ -12,7 +12,10 @@
             $settings_model = new waAppSettingsModel();
             $settings = $settings_model -> get('wacab');
             $model = new wacabPaymentModel();
+            $apps_model = new wacabAppsModel();
+            $apps = $apps_model->getAll();            
             $count = 0;
+            
             while(true){
             
                 if(!isset($url)){
@@ -34,7 +37,29 @@
                     if(count($exist_pay) > 0){
                         break 2;
                     }
+/* Привязываем платеж к плагину/приложению */
+ 
+                    $tmp = 0;                    
+                    foreach($apps as $key => $app){
+                        $app_locs = json_decode($app['regexp']);
+                        foreach($app_locs as $app_loc){
+                            if(strpos($pay['description'], $app_loc)){
+                                if(strlen($app_loc) > $tmp){
+                                    $tmp = strlen($app_loc);
+                                    $position = $key;
+                                    break 1;
+                                }
+                            }
+                        }
+                    }
+
+                    if($tmp > 0){
+
+                        $pay['apps_id'] = $apps[$position]['id'];
+                        unset($position);
+                    } 
                     
+ /* EOF Привязываем платеж к плагину/приложению */                    
                     $model->insert($pay);
                     $count ++;
                 }
