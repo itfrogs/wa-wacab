@@ -1,6 +1,56 @@
-<form id="wacab_servers_form" action="javascript:void(0);" method="post" onsubmit="$.wa.wacab.saveApp(this)">
-    [`App ID`]<input name="apps[app_id]" type="text">
-    [`Type`]<input name="apps[type]" type="text">
-    [`Name`]<input name="apps[name]" type="text">
-    <input type="submit" class="button blue" value="[`Add app`]" />
+<br />
+<h2>
+    {if $edit == 0}
+        [`Add new app:`]
+    {else}
+        [`Edit app `]({$app.name})
+    {/if}
+</h2>
+
+<form id="wacab_apps_form" action="javascript:void(0);" method="post" onsubmit="$.wa.wacab.saveApp(this)">
+    <div class="field-group">
+        <div class="field">
+            <div class="name">[`App ID`]</div>
+            <div class="value">
+                <input name="apps[app_id]" type="text" value="{if isset($app.app_id)}{$app.app_id|escape}{/if}">
+                <br />
+                <span class="hint">
+                    [`App ID in your account WebAsyst.`]
+                </span>
+            </div>
+        </div>
+        <div class="field">
+            <div class="name">[`App type`]</div>
+            <div class="value">
+                <select name="apps[type]">
+                    <option value="app" {if isset($app.type) && $app.type === 'app'}selected="selected"{/if}>[`Application`]</option>
+                    <option value="widget" {if isset($app.type) && $app.type === 'widget'}selected="selected"{/if}>[`Widget`]</option>
+                    <option value="theme" {if isset($app.type) && $app.type === 'theme'}selected="selected"{/if}>[`Theme`]</option>
+                    <option value="shipping" {if isset($app.type) && $app.type === 'shipping'}selected="selected"{/if}>[`Shipping`]</option>
+                    <option value="payment" {if isset($app.type) && $app.type === 'payment'}selected="selected"{/if}>[`Payment`]</option>
+                    {foreach $types as $type}
+                        <option value="{$type.app_id}" {if isset($app.type) && $app.type === $type.app_id}selected="selected"{/if}>{$type.app_id}</option>
+                    {/foreach}
+                </select>
+                <br />
+                <span class="hint">
+                    [`Select the type of Application.`]
+                </span>
+            </div>
+        </div>
+        <div class="field-group">
+            <div class="field">
+                <div class="name">[`App ID`]</div>
+                <div class="value">
+                    <input name="apps[name]" type="text" value="{if isset($app.name)}{$app.name|escape}{/if}">
+                    <br />
+                <span class="hint">
+                    [`App name in your localization.`]
+                </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <input type="hidden" name="apps[id]" value="{if isset($app.id)}{intval($app.id)}{else}0{/if}">
+    <input id="wacab_apps_form_savebutton" type="submit" class="button gray" value="[`Save`]" />
 </form>

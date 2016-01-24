@@ -29,9 +29,14 @@ class wacabAppsDeleteController extends waJsonController
             $apps_model->deleteById($id);
             $view = self::getView();
             $apps = $apps_model->getAll();
+            $types = $apps_model->getTypes();
+            $view->assign('types', $types);
             $view->assign('apps', $apps);
+            $view->assign('edit', 0);
+            $view->assign('app', array());
             $this->response = array(
-                'template' => $view->fetch(wacabHelper::getAppPath() . '/templates/actions/apps/apps_table.html')
+                'apps' => $view->fetch(wacabHelper::getAppPath() . '/templates/actions/apps/apps_table.html'),
+                'form' => $view->fetch(wacabHelper::getAppPath() . '/templates/actions/apps/apps_form.html'),
             );
         }
         else {

@@ -27,9 +27,19 @@ class wacabAppsSaveController extends waJsonController
             $apps_model = new wacabAppsModel();
             $app = waRequest::get('apps');
 
-            //вот тут надо внимательно
             if (isset($app['id']) && $app['id'] > 0) {
+                $old = $apps_model->getById($app['id']);
+                if ($old['app_id'] != $app['app_id'] && $app['type'] == 'app') {
+                    $apps_model->exec('UPDATE wacab_apps SET app_id = s:app_id WHERE app_id = s:old_app_id',
+                        array(
+                            'app_id'        => $app['app_id'],
+                            'old_app_id'    => $old['app_id'],
+                        )
+                    );
+                }
+
                 $apps_model->updateById($app['id'], $app);
+
             }
             else {
                 unset($app['id']);
@@ -38,11 +48,13 @@ class wacabAppsSaveController extends waJsonController
 
             $view = self::getView();
             $apps = $apps_model->getAll();
+            $types = $apps_model->getTypes();
+            $view->assign('types', $types);
             $view->assign('apps', $apps);
             $view->assign('edit', 0);
             $view->assign('app', array());
             $this->response = array(
-                'servers' => $view->fetch(wacabHelper::getAppPath() . '/templates/actions/apps/apps_table.html'),
+                'apps' => $view->fetch(wacabHelper::getAppPath() . '/templates/actions/apps/apps_table.html'),
                 'form' => $view->fetch(wacabHelper::getAppPath() . '/templates/actions/apps/apps_form.html'),
             );
         }

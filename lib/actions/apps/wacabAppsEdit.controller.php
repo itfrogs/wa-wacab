@@ -27,11 +27,16 @@ class wacabAppsEditController extends waJsonController
             $apps_model = new wacabAppsModel();
             $id = waRequest::post('id', 0, 'int');
             $app = $apps_model->getById($id);
+            $apps = $apps_model->getAll();
             $view = self::getView();
+            $types = $apps_model->getTypes();
+            $view->assign('types', $types);
             $view->assign('edit', 1);
             $view->assign('app', $app);
+            $view->assign('apps', $apps);
             $this->response = array(
-                'template' => $view->fetch(wacabHelper::getAppPath() . '/templates/actions/apps/apps_form.html')
+                'apps' => $view->fetch(wacabHelper::getAppPath() . '/templates/actions/apps/apps_table.html'),
+                'form' => $view->fetch(wacabHelper::getAppPath() . '/templates/actions/apps/apps_form.html'),
             );
         }
         else {

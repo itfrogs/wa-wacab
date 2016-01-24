@@ -9,4 +9,9 @@
 class wacabAppsModel extends waModel
 {
     protected $table = 'wacab_apps';
+
+    public function getTypes() {
+        $types = $this->query('SELECT app_id FROM '.$this->table.' app_id WHERE type = "app" GROUP BY app_id ORDER BY app_id ASC')->fetchAll();
+        return $types;
+    }
 }

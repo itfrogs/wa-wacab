@@ -149,9 +149,10 @@ $.wa.wacab = {
 		}
 	},
 	deleteApp: function(id) {
-		$.post("?module=appss&action=delete", {id: id}, function (response) {
+		$.post("?module=apps&action=delete", {id: id}, function (response) {
 			if(response.status == 'ok') {
-				$('#wacab_apps_container').html(response.data.template);
+				$('#wacab_apps_container').html(response.data.apps);
+				$('#wacab_apps_form_container').html(response.data.form);
 				$('#wacab_apps_form_savebutton').removeClass('green').removeClass('red');
 			}
 			else {
@@ -161,7 +162,8 @@ $.wa.wacab = {
 	editApp: function(id) {
 		$.post("?module=apps&action=edit", {id: id}, function (response) {
 			if(response.status == 'ok') {
-				$('#wacab_apps_form_container').html(response.data.template);
+				$('#wacab_apps_container').html(response.data.apps);
+				$('#wacab_apps_form_container').html(response.data.form);
 				$('#wacab_apps_form_savebutton').removeClass('green').removeClass('red');
 			}
 			else {
