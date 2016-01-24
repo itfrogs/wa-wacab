@@ -1,0 +1,22 @@
+<div class="block">
+	<h1>[`Statistic`]</h1>
+	[`Total`]: {$total[0]['SUM(pay)']}
+	
+	<table class="zebra">
+		<tr class="heading">
+			<td>[`Name`]</td>
+			<td>[`Total`]</td>
+			<td>[`Count order`]</td>
+			<td>[`Count return`]</td>
+		</tr>
+		{foreach $apps as $app}
+			<tr>
+				<td>{$app['name']}</td>
+				<td>{$app['total']}</td>
+				<td>{$app['count']}</td>
+				<td>{$app['return']}</td>
+			</tr>
+		{/foreach}
+	</table>
+	
+</div>
