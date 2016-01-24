@@ -1,0 +1,18 @@
+<table class="zebra">
+    <tbody>
+    <tr>
+        <td>[`Id`]</td>
+        <td>[`App ID`]</td>
+        <td>[`Plugin ID`]</td>
+        <td>[`Regexp`]</td>
+    </tr>
+    {foreach $apps as $app}
+        <tr>
+            <td>{$app['id']}</td>
+            <td>{$app['app_id']}</td>
+            <td>{$app['plugin_id']}</td>
+            <td>{$app['regexp']}</td>
+        </tr>
+    {/foreach}
+    </tbody>
+</table>
