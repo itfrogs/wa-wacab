@@ -168,6 +168,21 @@ $.wa.wacab = {
 			}
 		}, "json");
 	},
+	saveApp: function(el) {
+		var self = this;
+		form = $(el);
+		var data = form.serialize();
+		$.get("?module=apps&action=save&" + data, function (response) {
+			if(response.status == 'ok') {
+				$('#wacab_apps_container').html(response.data.apps);
+				$('#wacab_apps_form_container').html(response.data.form);
+				$('#wacab_apps_form_savebutton').addClass('green');
+			}
+			else {
+				$('#wacab_apps_form_savebutton').removeClass('green').addClass('red');
+			}
+		}, "json");
+	},
 	saveSettings: function(el) {
 		var self = this;
 		form = $(el);

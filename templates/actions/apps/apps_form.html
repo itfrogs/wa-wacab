@@ -1,6 +1,6 @@
-<form method="post" action="?module=apps&action=add">
-    [`App ID`]<input name="app_id" type="text">
-    [`Plugin ID`]<input name="plugin_id" type="text">
-    [`Name`]<input name="name" type="text">
+<form id="wacab_servers_form" action="javascript:void(0);" method="post" onsubmit="$.wa.wacab.saveApp(this)">
+    [`App ID`]<input name="apps[app_id]" type="text">
+    [`Type`]<input name="apps[type]" type="text">
+    [`Name`]<input name="apps[name]" type="text">
     <input type="submit" class="button blue" value="[`Add app`]" />
 </form>
