@@ -1,6 +1,7 @@
 <div class="block">
 	<h1>[`Statistic`]</h1>
-	[`Total`]: {round($total[0]['SUM(pay)'], 2)}
+	[`Total`]: {$total[0]['SUM(pay)']|wa_format_amount:'RUB':'%2i{n}'}
+	
 	
 	<table class="zebra">
 		<tr class="heading">
@@ -12,7 +13,7 @@
 		{foreach $apps as $app}
 			<tr>
 				<td>{$app['name']}</td>
-				<td>{$app['total']}</td>
+				<td>{$app['total']|wa_format_amount:'RUB':'%2i{n}'}</td>
 				<td>{$app['count']}</td>
 				<td>{$app['return']}</td>
 			</tr>
