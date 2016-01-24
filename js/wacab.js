@@ -115,7 +115,13 @@ $.wa.wacab = {
         $("#content").load('?module=reviews', function () {
             $.wa.wacab.active($("#s-link-reviews"));
         });
-	},	
+	},
+	appsAction: function () {
+		this.savePanel(false);
+        $("#content").load('?module=apps', function () {
+            $.wa.wacab.active($("#s-link-apps"));
+        });
+	},
 	active: function (el) {
 		$(".menu-li").removeClass('selected');
 		if (el && el.length) {

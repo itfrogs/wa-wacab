@@ -1,0 +1,31 @@
+<div class="block">
+	<h1>[`Apps`]</h1>
+
+	<table class="zebra">
+		<tbody>
+			<tr>
+				<td>[`Id`]</td>
+				<td>[`App ID`]</td>
+				<td>[`Plugin ID`]</td>
+				<td>[`Regexp`]</td>
+			</tr>
+			{foreach $apps as $app}
+			<tr>
+				<td>{$app['id']}</td>
+				<td>{$app['app_id']}</td>
+				<td>{$app['plugin_id']}</td>
+				<td>{$app['regexp']}</td>
+			</tr>
+			{/foreach}
+		</tbody>
+	</table>
+	
+	<form method="post" action="?module=apps&action=add">
+		[`App ID`]<input name="app_id" type="text">
+		[`Plugin ID`]<input name="plugin_id" type="text">
+		[`Name`]<input name="name" type="text">
+		<input type="submit" class="button blue" value="[`Add app`]" />
+	</form>
+	
+	
+</div>
