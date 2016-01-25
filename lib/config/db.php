@@ -16,8 +16,9 @@ return array(
     'wacab_apps' => array(
         'id' => array('int', 11, 'null' => 0, 'autoincrement' => 1),
         'app_id' => array('varchar', 32, 'null' => 0),
-        'type' => array('varchar', 32, 'null' => 1),
-        'name' => array('varchar', 50, 'null' => 0),
+        'parent' => array('varchar', 32, 'null' => 1),
+        'type' => array('varchar', 32, 'null' => 0),
+        'name' => array('text', 1024, 'null' => 0),
         ':keys' => array(
             'PRIMARY' => 'id',
         ),
@@ -75,5 +76,7 @@ ALTER TABLE `wacab_apps` ADD COLUMN `type` VARCHAR(32) NOT NULL AFTER `app_id`;
 ALTER TABLE `wacab_apps` ADD COLUMN `parent` VARCHAR(32) NOT NULL AFTER `app_id`, CHANGE COLUMN `names` `name` TEXT NOT NULL COLLATE 'utf8_unicode_ci' AFTER `type`;
 ALTER TABLE `wacab_apps` DROP COLUMN `parent`;
 ALTER TABLE `wacab_apps` CHANGE COLUMN `name` `name` VARCHAR(50) NOT NULL COLLATE 'utf8_unicode_ci' AFTER `type`;
-      
+  
+ALTER TABLE  `wacab_apps` CHANGE  `plugin_id`  `parent` VARCHAR( 32 ) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL  
+ALTER TABLE  `wacab_apps` CHANGE  `name`  `name` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL      
  */

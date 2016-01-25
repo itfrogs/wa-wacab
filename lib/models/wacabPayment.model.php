@@ -12,7 +12,7 @@ class wacabPaymentModel extends waModel
             2 => 'p.pay',
             3 => 'p.after',
             4 => 'p.order',
-            5 => 'a.plugin_id',
+            5 => 'a.app_id',
             6 => 'p.description',
         );
 
@@ -36,7 +36,7 @@ class wacabPaymentModel extends waModel
         $searchstring = '%' . $data['search']['value'] . '%';
 
         $results = $this->query(
-            "SELECT p.*, a.plugin_id AS app_name FROM " . $this->table . " p LEFT JOIN wacab_apps a ON p.apps_id = a.id
+            "SELECT p.*, a.app_id AS app_name FROM " . $this->table . " p LEFT JOIN wacab_apps a ON p.apps_id = a.id
             WHERE (p.order LIKE ? OR p.description LIKE ?) 
             ORDER BY " . $columns[intval($order['column'])] . " " . $this->escape($order['dir']) . "
             LIMIT " . intval($data['start']) . ", " . intval($data['length']), $searchstring, $searchstring
