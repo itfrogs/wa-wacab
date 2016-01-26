@@ -60,9 +60,33 @@
                     </div>
                 
             </div>
+		    <hr />
+            <div class="field">
+                <div class="value">
+                	<input id="b_relink" type="button" class="button blue" value="[`Relink`]"/> <img id="loading" style="display:none;" src="{$wa_url}wa-content/img/loading32.gif">
+                	
+                	
+                <span class="hint">
+                    [`Reset link's transactions <-> apps`]
+                </span>
+                    </div>
+            </div>		    
+		    <hr />                
+
         </div>        
         <div class="field">
         	<button id="wacab_settings_form_savebutton" class="button">[`Save`]</button>
         </div>            
     </form>
 </div>
+
+<script>
+		$('#b_relink').click(function(){
+			$('#b_relink').hide();
+			$('#loading').show();
+			$.post('?module=statistic&action=relink', function(data){
+				$('#b_relink').show();
+				$('#loading').hide();
+			});
+		});	
+</script>
