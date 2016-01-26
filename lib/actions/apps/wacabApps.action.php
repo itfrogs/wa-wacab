@@ -8,7 +8,9 @@ class wacabAppsAction extends waViewAction
         $apps_model = new wacabAppsModel();
         $apps = $apps_model->getAll();
         $types = $apps_model->getTypes();
+        $parents = $apps_model->getParents();
         $this->view->assign('types', $types);
+        $this->view->assign('parents', $parents);
         $this->view->assign('apps', $apps);
         $this->view->assign('edit', 0);
         

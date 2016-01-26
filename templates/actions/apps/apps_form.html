@@ -24,13 +24,11 @@
             <div class="value">
                 <select name="apps[type]">
                     <option value="app" {if isset($app.type) && $app.type === 'app'}selected="selected"{/if}>[`Application`]</option>
+                    <option value="plugin" {if isset($app.type) && $app.type === 'plugin'}selected="selected"{/if}>[`Plugin`]</option>
                     <option value="widget" {if isset($app.type) && $app.type === 'widget'}selected="selected"{/if}>[`Widget`]</option>
                     <option value="theme" {if isset($app.type) && $app.type === 'theme'}selected="selected"{/if}>[`Theme`]</option>
                     <option value="shipping" {if isset($app.type) && $app.type === 'shipping'}selected="selected"{/if}>[`Shipping`]</option>
                     <option value="payment" {if isset($app.type) && $app.type === 'payment'}selected="selected"{/if}>[`Payment`]</option>
-                    {foreach $types as $type}
-                        <option value="{$type.app_id}" {if isset($app.type) && $app.type === $type.app_id}selected="selected"{/if}>{$type.app_id}</option>
-                    {/foreach}
                 </select>
                 <br />
                 <span class="hint">
@@ -38,9 +36,28 @@
                 </span>
             </div>
         </div>
+        
+        <div class="field">
+            <div class="name">[`Parent`]</div>
+            <div class="value">
+                <select name="apps[parent]">
+                    <option value="no_parent">[`No parent`]</option>
+                    {foreach $parents as $parent}
+                    	{$name = json_decode($parent.name)}
+                        <option value="{$parent.app_id}">{$name[0]}</option>
+                    {/foreach}
+                </select>
+                <br />
+                <span class="hint">
+                    [`Select the parrent Application.`]
+                </span>
+            </div>
+        </div>
+        
+        
         <div class="field-group">
             <div class="field">
-                <div class="name">[`App ID`]</div>
+                <div class="name">[`Name`]</div>
                 <div class="value">
                     <input name="apps[name]" type="text" value="{if isset($app.name)}{$app.name|escape}{/if}">
                     <br />

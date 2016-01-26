@@ -13,9 +13,9 @@
             $settings = $settings_model -> get('wacab');
             $model = new wacabPaymentModel();
             $apps_model = new wacabAppsModel();
-            $apps = $apps_model->getAll();            
+            $no_parent_apps = $apps_model->getByField('parent', 'no_parent', true);             
             $count = 0;
-            
+            $spds = array('Начисление за ', 'Royalty fee for ');
             while(true){
             
                 if(!isset($url)){
@@ -38,26 +38,40 @@
                         break 2;
                     }
 /* Привязываем платеж к плагину/приложению */
- 
                     $tmp = 0;                    
-                    foreach($apps as $key => $app){
-                        $app_locs = json_decode($app['regexp']);
+                    foreach($no_parent_apps as $akey => $app){
+                        $app_locs = json_decode($app['name']);
                         foreach($app_locs as $app_loc){
                             if(strpos($pay['description'], $app_loc)){
-                                if(strlen($app_loc) > $tmp){
-                                    $tmp = strlen($app_loc);
-                                    $position = $key;
-                                    break 1;
+                                foreach($spds as $spd){
+                                    if($spd.$app_loc == $pay['description']){
+                                        $pay['apps_id'] = $app['id'];
+                                        break 3;
+                                    }  
+                                }
+                                $plugins = $apps_model->getByField('parent', $app['app_id'], true);
+                                foreach($plugins as $pkey => $plugin){
+                                    $plugin_locs = json_decode($plugin['name']);
+                                    foreach($plugin_locs as $plugin_name){
+                                        if(strpos($pay['description'], $plugin_name)){
+                                            if(strlen($app_loc) > $tmp){
+                                                $tmp = strlen($app_loc);
+                                                $apps_id = $plugin['id'];
+                                            } 
+                                        }
+                                    }
+                                    
                                 }
                             }
                         }
                     }
 
                     if($tmp > 0){
+                        $pay['apps_id'] = $apps_id;
+                        unset($apps_id);
+                    }
 
-                        $pay['apps_id'] = $apps[$position]['id'];
-                        unset($position);
-                    } 
+
                     
  /* EOF Привязываем платеж к плагину/приложению */                    
                     $model->insert($pay);

@@ -43,6 +43,7 @@ class wacabAppsSaveController extends waJsonController
             }
             else {
                 unset($app['id']);
+                $app['name'] = json_encode(array($app['name']));
                 $apps_model->insert($app);
             }
 
