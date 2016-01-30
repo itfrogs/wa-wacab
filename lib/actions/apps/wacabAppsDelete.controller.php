@@ -30,6 +30,8 @@ class wacabAppsDeleteController extends waJsonController
             $view = self::getView();
             $apps = $apps_model->getAll();
             $types = $apps_model->getTypes();
+            $parents = $apps_model->getParents();
+            $view->assign('parents', $parents);
             $view->assign('types', $types);
             $view->assign('apps', $apps);
             $view->assign('edit', 0);

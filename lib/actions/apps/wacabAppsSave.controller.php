@@ -26,6 +26,9 @@ class wacabAppsSaveController extends waJsonController
         if (wa()->getUser()->getRights('wacab', 'backend') >= 2) {
             $apps_model = new wacabAppsModel();
             $app = waRequest::get('apps');
+            if ($app['parent'] === 'null') {
+                $app['parent'] = null;
+            }
 
             if (isset($app['id']) && $app['id'] > 0) {
                 $old = $apps_model->getById($app['id']);
@@ -50,6 +53,8 @@ class wacabAppsSaveController extends waJsonController
             $view = self::getView();
             $apps = $apps_model->getAll();
             $types = $apps_model->getTypes();
+            $parents = $apps_model->getParents();
+            $view->assign('parents', $parents);
             $view->assign('types', $types);
             $view->assign('apps', $apps);
             $view->assign('edit', 0);

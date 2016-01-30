@@ -30,6 +30,8 @@ class wacabAppsEditController extends waJsonController
             $apps = $apps_model->getAll();
             $view = self::getView();
             $types = $apps_model->getTypes();
+            $parents = $apps_model->getParents();
+            $view->assign('parents', $parents);
             $view->assign('types', $types);
             $view->assign('edit', 1);
             $view->assign('app', $app);

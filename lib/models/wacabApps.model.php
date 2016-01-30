@@ -16,7 +16,7 @@ class wacabAppsModel extends waModel
     }
     
     public function getParents(){
-        return $this->query('SELECT * FROM '.$this->table.' app_id WHERE type = "app" ')->fetchAll();
+        return $this->query('SELECT * FROM '.$this->table.' app_id WHERE type = "app" GROUP BY app_id ORDER BY app_id ASC')->fetchAll();
     }
     
 }
