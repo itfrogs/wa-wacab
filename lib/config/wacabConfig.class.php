@@ -36,9 +36,13 @@ class wacabConfig extends waAppConfig{
         $settings['count_ts'] = time();
 
         unset($auth);
-        return array(
-            'count' => $newcount,
-            'url' => wa()->getUrl(true).'wacab/#/transactions/'
-        ); 
+		if($newcount == 0){
+			return null;
+		}else{
+	        return array(
+    	        'count' => $newcount,
+        	    'url' => wa()->getUrl(true).'wacab/#/transactions/'
+        	);
+		} 
     }
 }
