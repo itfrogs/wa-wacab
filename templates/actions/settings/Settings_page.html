@@ -55,22 +55,46 @@
                     <div class="value">
                     </div>
                 		<span class="hint">
-		                    [`Enable counter on icon spp`]
+		                    [`Enable counter on icon app`]
         		        </span>
                     </div>
                 
             </div>
 		    <hr />
+		    <table>
+		    <tr>
+		    <td>
             <div class="field">
                 <div class="value">
-                	<input id="b_relink" type="button" class="button blue" value="[`Relink`]"/> <img id="loading" style="display:none;" src="{$wa_url}wa-content/img/loading32.gif">
-                	
-                	
+                	<input id="b_relink" type="button" class="button blue" value="[`Relink`]"/> <img id="loading" style="display:none;" src="{$wa_url}wa-content/img/loading32.gif"><br>
                 <span class="hint">
                     [`Reset link's transactions <-> apps`]
                 </span>
                     </div>
-            </div>		    
+            </div>
+            </td>
+            <td>
+            <div class="field">
+                <div class="value">
+                	<input id="b_deltrans" type="button" class="button blue" value="[`Delete transactions`]"/> <img id="dt_loading" style="display:none;" src="{$wa_url}wa-content/img/loading32.gif"><br>
+                <span class="hint">
+                    [`Delete all transactions from DB`]
+                </span>
+                    </div>
+            </div>
+            </td>	
+            <td>
+            <div class="field">
+                <div class="value">
+                	<input id="b_delreviews" type="button" class="button blue" value="[`Delete reviews`]"/> <img id="drv_loading" style="display:none;" src="{$wa_url}wa-content/img/loading32.gif"><br>
+                <span class="hint">
+                    [`Delete all reviews from DB`]
+                </span>
+                    </div>
+            </div>
+            </td>
+            </tr>
+            </table>	    
 		    <hr />                
 
         </div>        
@@ -88,5 +112,23 @@
 				$('#b_relink').show();
 				$('#loading').hide();
 			});
-		});	
+		});
+		
+		$('#b_deltrans').click(function(){
+			$('#b_deltrans').hide();
+			$('#dt_loading').show();
+			$.get('?action=small&event=del_trans', function(data){
+				$('#b_deltrans').show();
+				$('#dt_loading').hide();
+			});
+		});
+		
+		$('#b_delreviews').click(function(){
+			$('#b_delreviews').hide();
+			$('#drv_loading').show();
+			$.get('?action=small&event=del_reviews', function(data){
+				$('#b_delreviews').show();
+				$('#drv_loading').hide();
+			});
+		});					
 </script>
