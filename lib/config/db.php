@@ -9,6 +9,7 @@ return array(
         'order' => array('text'),
         'description' => array('text', 'null' => 0),
         'apps_id' => array('int', 11),
+        'type' => array('varchar', 8, 'null' => 0),        
         ':keys' => array(
             'PRIMARY' => 'id',
         ),
@@ -79,4 +80,6 @@ ALTER TABLE `wacab_apps` CHANGE COLUMN `name` `name` VARCHAR(50) NOT NULL COLLAT
   
 ALTER TABLE  `wacab_apps` CHANGE  `plugin_id`  `parent` VARCHAR( 32 ) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL  
 ALTER TABLE  `wacab_apps` CHANGE  `name`  `name` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL      
+  
+ALTER TABLE  `wacab_payment` ADD  `type` VARCHAR( 8 ) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL  
  */

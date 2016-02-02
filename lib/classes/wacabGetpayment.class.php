@@ -36,7 +36,12 @@
                         break 2;
                     }
 /* Привязываем платеж к плагину/приложению */
-                    $pay['apps_id'] = self::checkApps($pay);
+                    $pay['type'] = self::checkType($pay);
+
+                    if($pay['type'] == 'payin'){
+                        $pay['apps_id'] = self::checkApps($pay);
+                    }
+                    
                     
  /* EOF Привязываем платеж к плагину/приложению */                    
                     $model->insert($pay);
@@ -94,6 +99,30 @@
             
         return;
         }
+
+        
+        public static function checkType($pay)
+        {
+            $payouts = array('Developer fee payout');
+            $orders = array('Payment for order ', 'Оплата для заказа ');
+
+            foreach ($payouts as $payout) {
+                if(strpos($pay['description'], $payout) === 0){
+                    return 'payout';
+                }
+            }
+            
+            foreach ($orders as $order) {
+                if(strpos($pay['description'], $order) === 0){
+                    return 'order';
+                }
+            }
+            
+            return 'payin';
+        }
+
+
+
 
 
     }
