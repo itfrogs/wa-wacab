@@ -20,6 +20,7 @@ return array(
         'parent' => array('varchar', 32, 'null' => 1),
         'type' => array('varchar', 32, 'null' => 0),
         'name' => array('text', 1024, 'null' => 0),
+        'stat' => array('int', 1, 'null' => 0),
         ':keys' => array(
             'PRIMARY' => 'id',
         ),
@@ -82,4 +83,7 @@ ALTER TABLE  `wacab_apps` CHANGE  `plugin_id`  `parent` VARCHAR( 32 ) CHARACTER 
 ALTER TABLE  `wacab_apps` CHANGE  `name`  `name` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL      
   
 ALTER TABLE  `wacab_payment` ADD  `type` VARCHAR( 8 ) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL  
+  
+ALTER TABLE  `wacab_apps` ADD  `stat` INT( 1 ) NOT NULL DEFAULT  '0' AFTER  `type`  
+ * 
  */

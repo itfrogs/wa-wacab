@@ -10,7 +10,7 @@ class wacabStatisticAction extends waViewAction
         $payments = $payment_model->getAll();
         
         $apps_model = new wacabAppsModel();
-        $apps = $apps_model->getAll();
+        $apps = $apps_model->getByField('stat', 1, true);
         
         $total = $model->query('SELECT SUM(pay) FROM wacab_payment WHERE `apps_id` is not null')->fetchAll();
 

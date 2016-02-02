@@ -13,7 +13,7 @@
             <td>{$app['app_id']}</td>
             <td>{$app['type']}</td>
             <td>{if $app['parent']}{$app['parent']}{/if}</td>
-            <td>{$app['name']}</td>
+            <td>{foreach json_decode($app['name']) as $name}{$name}, {/foreach}</td>
             <td><a href="javascript:void(0);" onclick="$.wa.wacab.editApp({$app.id})"><i class="icon16 edit"></i></a</td>
             <td><a href="javascript:void(0);" onclick="$.wa.wacab.deleteApp({$app.id})"><i class="icon16 delete"></i></a></td>
         </tr>

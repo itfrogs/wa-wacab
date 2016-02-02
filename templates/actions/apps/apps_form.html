@@ -44,7 +44,7 @@
                 <select name="apps[parent]">
                     <option value="null">[`No parent`]</option>
                     {foreach $parents as $parent}
-                        <option value="{$parent.app_id}" {if $app.parent && $app.parent === $parent.app_id}selected="selected"{/if}>{$parent.name}</option>
+                        <option value="{$parent.app_id}" {if $app.parent && $app.parent === $parent.app_id}selected="selected"{/if}>{$parent.app_id}</option>
                     {/foreach}
                 </select>
                 <br />
@@ -53,7 +53,22 @@
                 </span>
             </div>
         </div>
-        
+
+        <div class="field-group">
+            <div class="field">
+                <div class="name">[`To statistic`]</div>
+                <div class="value">
+                    <select name="apps[stat]">
+                    	<option value="1" {if isset($app.stat) && $app.stat == 1}selected="selected"{/if}>[`On`]</option>
+                    	<option value="0" {if isset($app.stat) && $app.stat == 0}selected="selected"{/if}>[`Off`]</option>
+                    </select>
+                    <br />
+                <span class="hint">
+                    [`Included in the statistics.`]
+                </span>
+                </div>
+            </div>
+        </div>        
         
         <div class="field-group">
             <div class="field">
