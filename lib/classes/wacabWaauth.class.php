@@ -1,36 +1,42 @@
 <?php
-
 /*  
  *  Класс отвечающий за авторизацию на webasyst и получение страниц
  */
-
 class wacabWaauth {
+    
+    public function __construct()
+    {
+        $this -> data['cookies'] = wa()->getStorage()->get('wacab/data');
+        if(empty($this -> data['cookies'])) {
+            $this->auth();
+        }
+    }
 
-    public function __construct() {
 
+    private function auth()
+    {
         $settings_model = new waAppSettingsModel();
         $settings = $settings_model -> get('wacab');
-
-        $path = wa() -> getTempPath(null, 'wacab');
-        
-        $cook_file = time();
-
-        $this -> data['cookies'] = $path . '/'.$cook_file.rand(100, 999);
         $auth_data = array('login' => $settings['login'], 'password' => $settings['passw'], 'wa_auth_login' => 1);
-
-        $url = 'https://www.webasyst.ru/login/';
-
-        $uagent = "Opera/9.80 (Windows NT 6.1; WOW64) Presto/2.12.388 Version/12.14";
-
-        $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_COOKIEJAR, $this -> data['cookies']);
-        curl_setopt($ch, CURLOPT_POST, 1);
+        $ch = curl_init('https://www.webasyst.ru/login/');
+        curl_setopt($ch, CURLOPT_HEADER, 1);
+        curl_setopt($ch, CURLINFO_HEADER_OUT, 1);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 0);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $auth_data);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);        // возвращает веб-страницу
-        curl_setopt($ch, CURLOPT_USERAGENT, $uagent);        // useragent
-        $qwe = curl_exec($ch);
+        $data = curl_exec($ch);
+        $header_size = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
+        $header = substr($data, 0, $header_size);
+        preg_match_all("/^Set-cookie: (.*?);/ism", $header, $cookies);
+        $this -> data['cookies']= '';
+        foreach( $cookies[1] as $cookie ){
+            $buffer_explode = strpos($cookie, "=");
+//            $allcookies[ substr($cookie,0,$buffer_explode) ] = substr($cookie,$buffer_explode+1);
+            $this -> data['cookies'] .= substr($cookie,0,$buffer_explode).'='.substr($cookie,$buffer_explode+1).'; ';
+        }
         curl_close($ch);
+        wa()->getStorage()->set('wacab/data',$this -> data['cookies']);
+        waLog::log('Пошла авторизация', 'wacab.log');        
     }
 
     /**
@@ -38,39 +44,35 @@ class wacabWaauth {
      * @return array
      * 
     */
-    public function getUrl($url) {
-
-        $uagent = "Opera/9.80 (Windows NT 6.1; WOW64) Presto/2.12.388 Version/12.14";
-
+    public function getUrl($url)
+    {
         $ch = curl_init($url);
-
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);        // возвращает веб-страницу
-        curl_setopt($ch, CURLOPT_HEADER, 0);        // не возвращает заголовки
-        curl_setopt($ch, CURLOPT_COOKIEFILE, $this->data['cookies']);
-        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);        // переходит по редиректам
-        curl_setopt($ch, CURLOPT_ENCODING, "");        // обрабатывает все кодировки
-        curl_setopt($ch, CURLOPT_USERAGENT, $uagent);        // useragent
-        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 120);        // таймаут соединения
-        curl_setopt($ch, CURLOPT_TIMEOUT, 120);        // таймаут ответа
-        curl_setopt($ch, CURLOPT_MAXREDIRS, 10);        // останавливаться после 10-ого редиректа
-
+        $options = array(
+            CURLOPT_RETURNTRANSFER => true, // возвращает веб-страницу
+            CURLOPT_HEADER => true,        // возвращает заголовки
+            CURLOPT_COOKIE => $this->data['cookies'],
+            CURLOPT_FOLLOWLOCATION => true,        // переходит по редиректам
+            CURLOPT_ENCODING => "",        // обрабатывает все кодировки
+            CURLOPT_USERAGENT => "Opera/9.80 (Windows NT 6.1; WOW64) Presto/2.12.388 Version/12.14",        // useragent
+            CURLOPT_CONNECTTIMEOUT => 120,        // таймаут соединения
+            CURLOPT_TIMEOUT => 120,        // таймаут ответа
+            CURLOPT_MAXREDIRS =>10,        // останавливаться после 10-ого редиректа
+        );
+        curl_setopt_array($ch,$options);
         $content = curl_exec($ch);
+        if (strpos($content, 'cc-auth-login')){
+            $this -> auth();
+            $options['CURLOPT_COOKIE'] = $this->data['cookies'];
+            $content = curl_exec($ch);
+        }
+        
         $err = curl_errno($ch);
         $errmsg = curl_error($ch);
         $header = curl_getinfo($ch);
         curl_close($ch);
-
         $header['errno'] = $err;
         $header['errmsg'] = $errmsg;
         $header['content'] = $content;
         return $header;
-
     }
-
-  public function __destruct(){
-      
-      waFiles::delete($this->data['cookies']);
-      
-  }
-
 }
