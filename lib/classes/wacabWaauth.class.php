@@ -31,12 +31,10 @@ class wacabWaauth {
         $this -> data['cookies']= '';
         foreach( $cookies[1] as $cookie ){
             $buffer_explode = strpos($cookie, "=");
-//            $allcookies[ substr($cookie,0,$buffer_explode) ] = substr($cookie,$buffer_explode+1);
             $this -> data['cookies'] .= substr($cookie,0,$buffer_explode).'='.substr($cookie,$buffer_explode+1).'; ';
         }
         curl_close($ch);
         wa()->getStorage()->set('wacab/data',$this -> data['cookies']);
-        waLog::log('Пошла авторизация', 'wacab.log');        
     }
 
     /**
