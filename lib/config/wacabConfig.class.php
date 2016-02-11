@@ -33,7 +33,7 @@ class wacabConfig extends waAppConfig{
             $newcount = 0;
         }
         $settings_model->set('wacab', 'new_count', $newcount);
-        $settings['count_ts'] = time();
+        $settings_model->set('wacab', 'count_ts', time());
 
         unset($auth);
 		if($newcount == 0){
