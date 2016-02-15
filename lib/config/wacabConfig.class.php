@@ -18,9 +18,16 @@ class wacabConfig extends waAppConfig{
         if(!isset($settings['timeout'])){
             $settings['timeout'] = 60;
         }
-        
+
         if(time() - $settings['count_ts'] < $settings['timeout'] * 60 ){
-            return null;
+            if($settings['new_count'] == 0){
+                return null;
+            }else{
+                return array(
+                        'count' => $settings['new_count'],
+                        'url' => wa()->getUrl(true).'wacab/#/transactions/'
+                    );
+            }
         }
 
         $auth = new wacabWaauth();
