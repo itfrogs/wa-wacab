@@ -21,11 +21,15 @@ class wacabStatisticAction extends waViewAction
             $app_count = $model->query('SELECT COUNT(*) FROM wacab_payment WHERE `pay` >= 0 AND `apps_id` = '.$app['id'])->fetch();
             $app_return = $model->query('SELECT COUNT(*) FROM wacab_payment WHERE `pay` < 0 AND `apps_id` = '.$app['id'])->fetch();
             $names = json_decode($app['name'], true);
+            if($app['parent'] == 'no_parent' || $app['parent'] == ''){
+            	$pname = $names[0];
+            }else{
+            	$pname = $names[0]." (".$app['parent'].")";
+            }
             $plugins_stat[] = array(
                 'id' => $app['app_id'],
-                'name' => $names[0]." (".$app['parent'].")",
                 'total' => $app_total[0],
-                'total' => $app_total[0],
+                'name' => $pname,
                 'count' => $app_count[0],
                 'return' => $app_return[0],
             );

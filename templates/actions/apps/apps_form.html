@@ -42,9 +42,9 @@
             <div class="name">[`Parent`]</div>
             <div class="value">
                 <select name="apps[parent]">
-                    <option value="null">[`No parent`]</option>
+                    <option value="no_parent">[`No parent`]</option>
                     {foreach $parents as $parent}
-                        <option value="{$parent.app_id}" {if $app.parent && $app.parent === $parent.app_id}selected="selected"{/if}>{$parent.app_id}</option>
+                        <option value="{$parent.app_id}" {if isset($app.parent) && $app.parent === $parent.app_id}selected="selected"{/if}>{$parent.app_id}</option>
                     {/foreach}
                 </select>
                 <br />
