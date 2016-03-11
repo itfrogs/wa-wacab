@@ -62,7 +62,7 @@
                         'author' => substr($td[3], 1, strpos($td[3], '<') - 1),
                         'version' => substr($td[4], 1, strpos($td[4], '<') - 1),
                         'text' => substr($td[6], 1, strpos($td[6], '</td>') - 1),
-                        'rating' => substr_count($td[5], 'star'),
+                        'rating' => substr_count($td[5], 'star"'),
                         'vote' => substr($td[7], strpos($td[7], ';">') + 3, strpos($td[7], '</b>') - strpos($td[7], ';">') - 3),
                         'rv_id' => substr($td[8], strpos($td[8], 'id=') + 4, strpos($td[8], '">', strpos($td[8], '">')) - 7),
                     );
