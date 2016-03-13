@@ -127,6 +127,12 @@ $.wa.wacab = {
         $("#content").load('?module=statistic', function () {
             $.wa.wacab.active($("#s-link-stat"));
         });
+	},
+	agentAction: function () {
+		this.savePanel(false);
+        $("#content").load('?module=agent', function () {
+            $.wa.wacab.active($("#s-link-agent"));
+        });
 	},	
 	active: function (el) {
 		$(".menu-li").removeClass('selected');

@@ -60,75 +60,92 @@
                     </div>
                 
             </div>
+            <hr />
+            <h3>Отчеты агента</h3>
+			<div class="field">
+                <div class="name">в лице...</div>
+                <div class="value">
+                   	<input name="settings[agent_face]" type="text" value="{if isset($settings.agent_face)}{$settings.agent_face}{/if}"/>
+                <span class="hint">
+                    Строка для подстановки в соответствующую часть отчета (Принципал, в лице ___)
+                </span>
+                </div>
+            </div>            
+            <div class="field">
+                <div class="name">действующего на основании...</div>
+                <div class="value">
+                   	<input name="settings[agent_basis]" type="text" value="{if isset($settings.agent_basis)}{$settings.agent_basis}{/if}"/>
+                <span class="hint">
+                    Строка для подстановки в соответствующую часть отчета (действующего на основании ___)
+                </span>
+                </div>
+            </div>
+            <div class="field">
+                <div class="name">ФИО руководителя</div>
+                <div class="value">
+                   	<input name="settings[agent_short_name]" type="text" value="{if isset($settings.agent_short_name)}{$settings.agent_short_name}{/if}"/>
+                <span class="hint">
+                    Строка для подстановки в соответствующую часть отчета (/_________/)
+                </span>
+                </div>
+            </div>
+            <div class="field">
+                <div class="name">Размер шрифта отчета для печати</div>
+                <div class="value">
+                   	<input name="settings[agent_fsize]" type="text" value="{if isset($settings.agent_fsize)}{$settings.agent_fsize}{else}0.8em{/if}"/>
+                <span class="hint">
+                    Размер шрифтов для печати отчета (em, %)
+                </span>
+                </div>
+            </div>
+
 		    <hr />
-		    <table>
-		    <tr>
-		    <td>
-            <div class="field">
-                <div class="value">
-                	<input id="b_relink" type="button" class="button blue" value="[`Relink`]"/> <img id="loading" style="display:none;" src="{$wa_url}wa-content/img/loading32.gif"><br>
-                <span class="hint">
-                    [`Reset link's transactions <-> apps`]
-                </span>
-                    </div>
-            </div>
-            </td>
-            <td>
-            <div class="field">
-                <div class="value">
-                	<input id="b_deltrans" type="button" class="button blue" value="[`Delete transactions`]"/> <img id="dt_loading" style="display:none;" src="{$wa_url}wa-content/img/loading32.gif"><br>
-                <span class="hint">
-                    [`Delete all transactions from DB`]
-                </span>
-                    </div>
-            </div>
-            </td>	
-            <td>
-            <div class="field">
-                <div class="value">
-                	<input id="b_delreviews" type="button" class="button blue" value="[`Delete reviews`]"/> <img id="drv_loading" style="display:none;" src="{$wa_url}wa-content/img/loading32.gif"><br>
-                <span class="hint">
-                    [`Delete all reviews from DB`]
-                </span>
-                    </div>
-            </div>
-            </td>
-            </tr>
-            </table>	    
+        	<div class="field">
+        		<button id="wacab_settings_form_savebutton" class="button">[`Save`]</button>
+        	</div>
+        	<hr />   		    
+		    <p><a id="b_relink" href="#">[`Reset link's transactions <-> apps`]</a> <img id="loading" style="display:none;" src="{$wa_url}wa-content/img/loading16.gif"></p>
+		    <p><a id="b_deltrans" href="#">[`Delete all transactions from DB`]</a> <img id="dt_loading" style="display:none;" src="{$wa_url}wa-content/img/loading16.gif"></p>
+		    <p><a id="b_delreviews" href="#">[`Delete all reviews from DB`]</a> <img id="drv_loading" style="display:none;" src="{$wa_url}wa-content/img/loading16.gif"></p>
+		    <p><a id="b_delareports" href="#">[`Delete all agent reports from DB`]</a> <img id="dar_loading" style="display:none;" src="{$wa_url}wa-content/img/loading16.gif"></p>
+		    
+	    
 		    <hr />                
 
         </div>        
-        <div class="field">
-        	<button id="wacab_settings_form_savebutton" class="button">[`Save`]</button>
-        </div>            
+         
     </form>
 </div>
 
 <script>
 		$('#b_relink').click(function(){
-			$('#b_relink').hide();
 			$('#loading').show();
 			$.post('?module=statistic&action=relink', function(data){
-				$('#b_relink').show();
 				$('#loading').hide();
 			});
+			return false;
 		});
 		
 		$('#b_deltrans').click(function(){
-			$('#b_deltrans').hide();
 			$('#dt_loading').show();
 			$.get('?action=small&event=del_trans', function(data){
-				$('#b_deltrans').show();
 				$('#dt_loading').hide();
 			});
+			return false;
 		});
 		
 		$('#b_delreviews').click(function(){
-			$('#b_delreviews').hide();
 			$('#drv_loading').show();
 			$.get('?action=small&event=del_reviews', function(data){
-				$('#b_delreviews').show();
 				$('#drv_loading').hide();
 			});
-		});					
+			return false;
+		});
+		$('#b_delareports').click(function(){
+			$('#dar_loading').show();
+			$.get('?action=small&event=del_areports', function(data){
+				$('#dar_loading').hide();
+			});
+			return false;
+		});							
 </script>

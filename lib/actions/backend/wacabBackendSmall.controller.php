@@ -14,7 +14,19 @@ class wacabBackendSmallController extends waController{
                 $model -> query('TRUNCATE TABLE  `wacab_review`');
                 
                 break;
+                
+            case 'del_areports':
+            	$model = new waModel;
+            	$model -> query('TRUNCATE TABLE  `wacab_areport`');
+            	break;
+            	
+            case 'print_report':
+            	$model = new wacabAgentModel();
+            	$report = $model->getByField('rid', waRequest::get('rid'));
+            	echo $report['html'];
+            	break;
         }
+        
 
     }
 }
