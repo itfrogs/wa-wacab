@@ -16,6 +16,9 @@ class wacabGettableController extends waController
         $data['draw'] = waRequest::request('draw', 1, 'int');
         $data['length'] = waRequest::request('length', 10, 'int');
         $data['search'] = waRequest::request('search');
+        $data['startdate'] = waRequest::request('startdate');
+        $data['enddate'] = waRequest::request('enddate');
+        $data['no_minus'] = waRequest::request('no_minus');
 
         $payment_model = new wacabPaymentModel();
 

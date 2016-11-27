@@ -5,7 +5,6 @@ class wacabPaymentModel extends waModel
 
     public function getDataTable($data)
     {
-
         $columns = array(
             0 => 'p.date',
             1 => 'p.before',
@@ -30,24 +29,52 @@ class wacabPaymentModel extends waModel
         }
 
         $response['recordsTotal'] = intval($this->query(
-            "SELECT count(*) FROM " . $this->table . " WHERE pay > 0"
+            "SELECT count(*) FROM " . $this->table . " "
         )->fetchField());
 
         $searchstring = '%' . $data['search']['value'] . '%';
 
+        $time_interval = ' AND ( ';
+
+        if (strlen($data['startdate']) > 10) {
+            $time_interval .= ' p.date >= "' . $data['startdate'] . '" ';
+        }
+        else {
+            $time_interval .= ' 1 ';
+        }
+
+        if (strlen($data['enddate']) > 10) {
+            $time_interval .= ' AND p.date < "' . $data['enddate'] . '" ';
+        }
+        else {
+            $time_interval .= ' AND 1 ';
+        }
+
+        $time_interval .= ' ) ';
+
+        if ($data['no_minus'] == 1) {
+            $no_minus = ' AND p.pay >= 0 ';
+        }
+        else {
+            $no_minus = '';
+        }
+
+        //var_dump($time_interval);
+
         $results = $this->query(
-            "SELECT p.*, a.app_id AS app_name FROM " . $this->table . " p LEFT JOIN wacab_apps a ON p.apps_id = a.id
-            WHERE (p.order LIKE ? OR p.description LIKE ?) 
-            ORDER BY " . $columns[intval($order['column'])] . " " . $this->escape($order['dir']) . "
-            LIMIT " . intval($data['start']) . ", " . intval($data['length']), $searchstring, $searchstring
+            "SELECT p.*, a.app_id AS app_name FROM " . $this->table . " p LEFT JOIN wacab_apps a ON p.apps_id = a.id "
+            ." WHERE (p.order LIKE ? OR p.description LIKE ?) " . $time_interval . $no_minus
+            ." ORDER BY " . $columns[intval($order['column'])] . " " . $this->escape($order['dir'])
+            ." LIMIT " . intval($data['start']) . ", " . intval($data['length']), $searchstring, $searchstring
 
         );
         $results->fetchAll();
 
 
         $counts = $this->query(
-            "SELECT COUNT(p.id) AS count, SUM(p.pay) AS sum FROM " . $this->table . " p LEFT JOIN wacab_apps a ON p.apps_id = a.id
-            WHERE (p.order LIKE ? OR p.description LIKE ?) ", $searchstring, $searchstring
+            "SELECT COUNT(p.id) AS count, SUM(p.pay) AS sum FROM " . $this->table
+            ." p LEFT JOIN wacab_apps a ON p.apps_id = a.id "
+            ."WHERE (p.order LIKE ? OR p.description LIKE ?) " . $time_interval . $no_minus, $searchstring, $searchstring
         )->fetchAssoc();
 
         $response['recordsFiltered'] = $counts['count'];

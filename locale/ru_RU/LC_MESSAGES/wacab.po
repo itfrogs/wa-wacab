@@ -1,0 +1,321 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: wacab\n"
+"POT-Creation-Date: 2016-11-28 00:54+0300\n"
+"PO-Revision-Date: \n"
+"Last-Translator: wacab\n"
+"Language-Team: wacab\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=((((n%10)==1)&&((n%100)!=11))?(0):(((((n%10)>=2)&&((n%10)<=4))&&(((n%100)<10)||((n%100)>=20)))?(1):2));\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-Basepath: .\n"
+"Language: ru_RU\n"
+"X-Generator: Poedit 1.8.7.1\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPath-1: .\n"
+
+#: /wa-apps/wacab/templates/actions/statistic/stat_page.html:2
+#: /wa-apps/wacab/templates/actions/backend/Backend_page.html:40
+msgid "Statistic"
+msgstr "Статистика"
+
+#: /wa-apps/wacab/templates/actions/statistic/stat_page.html:3
+msgid "Total"
+msgstr "Итого"
+
+#: /wa-apps/wacab/templates/actions/statistic/stat_page.html:9
+msgid "Total: "
+msgstr "Итого:"
+
+#: /wa-apps/wacab/templates/actions/statistic/stat_page.html:10
+msgid "Ordered: "
+msgstr "Заказано:"
+
+#: /wa-apps/wacab/templates/actions/statistic/stat_page.html:11
+msgid "Returned: "
+msgstr "Возвращено:"
+
+#: /wa-apps/wacab/templates/actions/apps/apps_form.html:4
+msgid "Add new app:"
+msgstr "Добавить новое приложение:"
+
+#: /wa-apps/wacab/templates/actions/apps/apps_form.html:6
+msgid "Edit app "
+msgstr "Редактировать приложение"
+
+#: /wa-apps/wacab/templates/actions/apps/apps_form.html:13
+#: /wa-apps/wacab/templates/actions/apps/apps_table.html:4
+msgid "App ID"
+msgstr "ID приложения"
+
+#: /wa-apps/wacab/templates/actions/apps/apps_form.html:18
+msgid "App ID in your account WebAsyst."
+msgstr "ID прилодения в вашем аккаунте Вебасист"
+
+#: /wa-apps/wacab/templates/actions/apps/apps_form.html:23
+#: /wa-apps/wacab/templates/actions/apps/apps_table.html:5
+msgid "App type"
+msgstr "Тип приложения"
+
+#: /wa-apps/wacab/templates/actions/apps/apps_form.html:26
+msgid "Application"
+msgstr "Приложение"
+
+#: /wa-apps/wacab/templates/actions/apps/apps_form.html:27
+msgid "Plugin"
+msgstr "Плагин"
+
+#: /wa-apps/wacab/templates/actions/apps/apps_form.html:28
+msgid "Widget"
+msgstr "Виджет"
+
+#: /wa-apps/wacab/templates/actions/apps/apps_form.html:29
+msgid "Theme"
+msgstr "Тема"
+
+#: /wa-apps/wacab/templates/actions/apps/apps_form.html:30
+msgid "Shipping"
+msgstr "Доставка"
+
+#: /wa-apps/wacab/templates/actions/apps/apps_form.html:31
+msgid "Payment"
+msgstr "Оплата"
+
+#: /wa-apps/wacab/templates/actions/apps/apps_form.html:32
+msgid "SMS"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/apps/apps_form.html:36
+msgid "Select the type of Application."
+msgstr "Выберите тип приложения"
+
+#: /wa-apps/wacab/templates/actions/apps/apps_form.html:42
+#: /wa-apps/wacab/templates/actions/apps/apps_table.html:6
+msgid "Parent"
+msgstr "Родитель"
+
+#: /wa-apps/wacab/templates/actions/apps/apps_form.html:45
+msgid "No parent"
+msgstr "Нет родителя"
+
+#: /wa-apps/wacab/templates/actions/apps/apps_form.html:52
+msgid "Select the parrent Application."
+msgstr "Выберите родителя приложения"
+
+#: /wa-apps/wacab/templates/actions/apps/apps_form.html:59
+msgid "To statistic"
+msgstr "В статистику"
+
+#: /wa-apps/wacab/templates/actions/apps/apps_form.html:62
+#: /wa-apps/wacab/templates/actions/settings/Settings_page.html:39
+msgid "On"
+msgstr "Вкл"
+
+#: /wa-apps/wacab/templates/actions/apps/apps_form.html:63
+#: /wa-apps/wacab/templates/actions/settings/Settings_page.html:40
+msgid "Off"
+msgstr "Выкл"
+
+#: /wa-apps/wacab/templates/actions/apps/apps_form.html:67
+msgid "Included in the statistics."
+msgstr "Включено в статистику."
+
+#: /wa-apps/wacab/templates/actions/apps/apps_form.html:75
+#: /wa-apps/wacab/templates/actions/apps/apps_table.html:7
+msgid "Name"
+msgstr "Имя"
+
+#: /wa-apps/wacab/templates/actions/apps/apps_form.html:80
+msgid "App name in your localization."
+msgstr "Имя приложения на вашем языке"
+
+#: /wa-apps/wacab/templates/actions/apps/apps_form.html:87
+#: /wa-apps/wacab/templates/actions/settings/Settings_page.html:108
+msgid "Save"
+msgstr "Сохранить"
+
+#: /wa-apps/wacab/templates/actions/apps/apps_table.html:8
+msgid "Edit"
+msgstr "Редактировать"
+
+#: /wa-apps/wacab/templates/actions/apps/apps_table.html:9
+msgid "Delete"
+msgstr "Удалить"
+
+#: /wa-apps/wacab/templates/actions/apps/apps_page.html:2
+msgid "Apps"
+msgstr "Приложения"
+
+#: /wa-apps/wacab/templates/actions/transactions/Transactions_page.html:2
+#: /wa-apps/wacab/templates/actions/backend/Backend_page.html:43
+msgid "Transactions"
+msgstr "Транзакции"
+
+#: /wa-apps/wacab/templates/actions/transactions/Transactions_page.html:12
+msgid "Filters"
+msgstr "Фильтры"
+
+#: /wa-apps/wacab/templates/actions/transactions/Transactions_page.html:13
+msgid "Set the start date"
+msgstr "Задайте дату начала"
+
+#: /wa-apps/wacab/templates/actions/transactions/Transactions_page.html:14
+msgid "Set the end date"
+msgstr "Задайте дату окончания"
+
+#: /wa-apps/wacab/templates/actions/transactions/Transactions_page.html:15
+msgid "No negative values"
+msgstr "Без отрицательных значений"
+
+#: /wa-apps/wacab/templates/actions/transactions/Transactions_page.html:17
+msgid "Output filters."
+msgstr "Фильтры вывода информации"
+
+#: /wa-apps/wacab/templates/actions/transactions/Transactions_page.html:25
+#: /wa-apps/wacab/templates/actions/transactions/Transactions_page.html:37
+#: /wa-apps/wacab/templates/actions/reviews/reviews_page.html:10
+msgid "Date"
+msgstr "Дата"
+
+#: /wa-apps/wacab/templates/actions/transactions/Transactions_page.html:26
+#: /wa-apps/wacab/templates/actions/transactions/Transactions_page.html:38
+msgid "Before"
+msgstr "До"
+
+#: /wa-apps/wacab/templates/actions/transactions/Transactions_page.html:27
+#: /wa-apps/wacab/templates/actions/transactions/Transactions_page.html:39
+msgid "Pay"
+msgstr "Оплачено"
+
+#: /wa-apps/wacab/templates/actions/transactions/Transactions_page.html:28
+#: /wa-apps/wacab/templates/actions/transactions/Transactions_page.html:40
+msgid "After"
+msgstr "После"
+
+#: /wa-apps/wacab/templates/actions/transactions/Transactions_page.html:29
+#: /wa-apps/wacab/templates/actions/transactions/Transactions_page.html:41
+msgid "Order"
+msgstr "Заказ"
+
+#: /wa-apps/wacab/templates/actions/transactions/Transactions_page.html:30
+#: /wa-apps/wacab/templates/actions/transactions/Transactions_page.html:42
+#: /wa-apps/wacab/templates/actions/reviews/reviews_page.html:11
+msgid "App"
+msgstr "Приложение"
+
+#: /wa-apps/wacab/templates/actions/transactions/Transactions_page.html:30
+#: /wa-apps/wacab/templates/actions/transactions/Transactions_page.html:42
+msgid "Description"
+msgstr "Описание"
+
+#: /wa-apps/wacab/templates/actions/agent/agent_page.html:2
+msgid "Agent reports"
+msgstr "Отчеты агента"
+
+#: /wa-apps/wacab/templates/actions/reviews/reviews_page.html:2
+#: /wa-apps/wacab/templates/actions/backend/Backend_page.html:46
+msgid "Reviews"
+msgstr "Отзывы"
+
+#: /wa-apps/wacab/templates/actions/reviews/reviews_page.html:12
+msgid "Author"
+msgstr "Автор"
+
+#: /wa-apps/wacab/templates/actions/reviews/reviews_page.html:13
+msgid "Version"
+msgstr "Версия"
+
+#: /wa-apps/wacab/templates/actions/reviews/reviews_page.html:14
+msgid "Rating"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/reviews/reviews_page.html:15
+msgid "Text"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/reviews/reviews_page.html:16
+msgid "Vote"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/settings/Settings_page.html:2
+#: /wa-apps/wacab/templates/actions/backend/Backend_page.html:55
+msgid "Settings"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/settings/Settings_page.html:8
+msgid "Login"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/settings/Settings_page.html:12
+msgid "Login to WA customer center"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/settings/Settings_page.html:17
+msgid "Password"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/settings/Settings_page.html:21
+msgid "Password\t to WA customer center"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/settings/Settings_page.html:26
+msgid "Account"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/settings/Settings_page.html:30
+msgid "Pay account"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/settings/Settings_page.html:36
+msgid "Counter"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/settings/Settings_page.html:44
+#: /wa-apps/wacab/templates/actions/settings/Settings_page.html:45
+#: /wa-apps/wacab/templates/actions/settings/Settings_page.html:46
+#: /wa-apps/wacab/templates/actions/settings/Settings_page.html:47
+#: /wa-apps/wacab/templates/actions/settings/Settings_page.html:48
+#: /wa-apps/wacab/templates/actions/settings/Settings_page.html:49
+#: /wa-apps/wacab/templates/actions/settings/Settings_page.html:50
+#: /wa-apps/wacab/templates/actions/settings/Settings_page.html:51
+#: /wa-apps/wacab/templates/actions/settings/Settings_page.html:52
+msgid "min"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/settings/Settings_page.html:58
+msgid "Enable counter on icon app"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/settings/Settings_page.html:108
+msgid "Reset link's transactions <-> apps"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/settings/Settings_page.html:109
+msgid "Delete all transactions from DB"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/settings/Settings_page.html:110
+msgid "Delete all reviews from DB"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/settings/Settings_page.html:122
+msgid "Delete all agent reports from DB"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/backend/Backend_page.html:32
+msgid "Main"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/backend/Backend_page.html:37
+msgid "Navigation"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/backend/Backend_page.html:49
+msgid "My Apps"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/backend/Backend_page.html:64
+msgid "Main tab"
+msgstr ""

@@ -1,272 +1,304 @@
 (function ($) {
-$.storage = new $.store();
+    $.storage = new $.store();
 
-$.wa.errorHandler = function (xhr) {
-	$.storage.del('site/' + $.wa.wacab.domain + '/hash');
-	if (xhr.status == 404) {
-		$.wa.setHash('#/');
-		return false;
-	}
-	return true;
-};
+    $.wa.errorHandler = function (xhr) {
+        $.storage.del('site/' + $.wa.wacab.domain + '/hash');
+        if (xhr.status == 404) {
+            $.wa.setHash('#/');
+            return false;
+        }
+        return true;
+    };
 
-$.wa.wacab = {
-	options: [],
-	helper: '',
-	dataTable: null,
-	init: function (options) {
+    $.wa.wacab = {
+        options: [],
+        helper: '',
+        dataTable: null,
+        init: function (options) {
 
-		this.options = options;
+            this.options = options;
 
-		var hash = window.location.hash || $.storage.get('wacab/hash');
-		if (hash && hash != window.location.hash) {
-			this.load_from_hash = 2;
-			$.wa.setHash('#/' + hash);
-		} else {
-			this.dispatch();
-		}
+            var hash = window.location.hash || $.storage.get('wacab/hash');
+            if (hash && hash != window.location.hash) {
+                this.load_from_hash = 2;
+                $.wa.setHash('#/' + hash);
+            } else {
+                this.dispatch();
+            }
+        },
 
-//		$("#wacab_servers_form").on('submit', function() {
-			//console.log(this);
-		//});
+        setHelper: function (helper) {
+            if (helper === true) {
+                return false;
+            }
+            if (helper) {
+                this.helper = helper;
+                $("#s-save-panel div.s-dropdown").show();
+            } else {
+                this.helper = '';
+                $("#s-save-panel div.s-dropdown").hide();
+            }
+        },
 
-	},
-	
-	setHelper: function (helper) {
-		if (helper === true) {
-			return false;
-		}
-		if (helper) {
-			this.helper = helper;
-			$("#s-save-panel div.s-dropdown").show();
-		} else {
-			this.helper = '';
-			$("#s-save-panel div.s-dropdown").hide();
-		}
-	},
-	
-	dispatch: function (hash) {
-		if (hash == undefined) {
-			hash = window.location.hash;
-		}
-		hash = hash.replace(/^[^#]*#\/*/, ''); /* fix sintax highlight*/
-		if (hash) {
-			hash = hash.split('/');
-			if (hash[0]) {
-				var actionName = "";
-				var attrMarker = hash.length;
-				for (var i = 0; i < hash.length; i++) {
-					var h = hash[i];
-					if (i < 2) {
-						if (i === 0) {
-							actionName = h;
-						} else if (actionName == 'files') {
-                            this.filesAction(hash.slice(i).join('/'));
-							return;
-						} else if (parseInt(h, 10) != h && h.indexOf('=') == -1 && actionName != 'plugins') {
-							actionName += h.substr(0,1).toUpperCase() + h.substr(1);
-						} else {
-							attrMarker = i;
-							break;
-						}
-					} else {
-						attrMarker = i;
-						break;
-					}
-				}
-				var attr = hash.slice(attrMarker);
+        dispatch: function (hash) {
+            if (hash == undefined) {
+                hash = window.location.hash;
+            }
+            hash = hash.replace(/^[^#]*#\/*/, ''); /* fix sintax highlight*/
+            if (hash) {
+                hash = hash.split('/');
+                if (hash[0]) {
+                    var actionName = "";
+                    var attrMarker = hash.length;
+                    for (var i = 0; i < hash.length; i++) {
+                        var h = hash[i];
+                        if (i < 2) {
+                            if (i === 0) {
+                                actionName = h;
+                            } else if (actionName == 'files') {
+                                this.filesAction(hash.slice(i).join('/'));
+                                return;
+                            } else if (parseInt(h, 10) != h && h.indexOf('=') == -1 && actionName != 'plugins') {
+                                actionName += h.substr(0,1).toUpperCase() + h.substr(1);
+                            } else {
+                                attrMarker = i;
+                                break;
+                            }
+                        } else {
+                            attrMarker = i;
+                            break;
+                        }
+                    }
+                    var attr = hash.slice(attrMarker);
 
-				if (this[actionName + 'Action']) {
-					this[actionName + 'Action'].apply(this, attr);
-					// save last page to return to by default later
-					$.storage.set('site/' + this.domain + '/hash', hash.join('/'));					
-				} else {
-					if (console) {
-						console.log('Invalid action name:', actionName+'Action');
-					}
-				}
-			} else {
-				this.defaultAction();
-			}
-		} else {
-			this.defaultAction();
-		}			
-	},
-			
-	defaultAction: function () {
-		var hash = $("div.sidebar ul.menu-v a:first").attr('href');
-		$.wa.setHash(hash);
-	},
-	transactionsAction: function () {
-		this.savePanel(false);
-		$("#content").load('?module=transactions', function () {
-			$.wa.wacab.active($("#s-link-transactions"));
-		});
-	},
-	settingsAction: function () {
-		//alert('settings');
-		this.savePanel(false);
-        $("#content").load('?module=settings', function () {
-            $.wa.wacab.active($("#s-link-settings"));
-        });
-	},
-	reviewsAction: function () {
-		this.savePanel(false);
-        $("#content").load('?module=reviews', function () {
-            $.wa.wacab.active($("#s-link-reviews"));
-        });
-	},
-	appsAction: function () {
-		this.savePanel(false);
-        $("#content").load('?module=apps', function () {
-            $.wa.wacab.active($("#s-link-apps"));
-        });
-	},
-	statisticAction: function () {
-		this.savePanel(false);
-        $("#content").load('?module=statistic', function () {
-            $.wa.wacab.active($("#s-link-stat"));
-        });
-	},
-	agentAction: function () {
-		this.savePanel(false);
-        $("#content").load('?module=agent', function () {
-            $.wa.wacab.active($("#s-link-agent"));
-        });
-	},	
-	active: function (el) {
-		$(".menu-li").removeClass('selected');
-		if (el && el.length) {
-			el.addClass('selected');
-		}
-	},
-	savePanel: function (show, add_class) {
-		if (show) {
-			$("#s-save-panel").show();
-			$("#s-save-panel input").removeClass('yellow').addClass('green');
-			$("#wa-editor-status").empty();
-			if (add_class) {
-				$("#s-save-panel .s-bottom-fixed-bar-content-offset").addClass(add_class);
-			} else {
-				$("#s-save-panel .s-bottom-fixed-bar-content-offset").attr('class', 's-bottom-fixed-bar-content-offset');
-			}
-		} else {
-			$("#s-save-panel").hide();
-		}
-	},
-	deleteApp: function(id) {
-		$.post("?module=apps&action=delete", {id: id}, function (response) {
-			if(response.status == 'ok') {
-				$('#wacab_apps_container').html(response.data.apps);
-				$('#wacab_apps_form_container').html(response.data.form);
-				$('#wacab_apps_form_savebutton').removeClass('green').removeClass('red');
-			}
-			else {
-			}
-		}, "json");
-	},
-	editApp: function(id) {
-		$.post("?module=apps&action=edit", {id: id}, function (response) {
-			if(response.status == 'ok') {
-				$('#wacab_apps_container').html(response.data.apps);
-				$('#wacab_apps_form_container').html(response.data.form);
-				$('#wacab_apps_form_savebutton').removeClass('green').removeClass('red');
-			}
-			else {
-			}
-		}, "json");
-	},
-	saveApp: function(el) {
-		var self = this;
-		form = $(el);
-		var data = form.serialize();
-		$.get("?module=apps&action=save&" + data, function (response) {
-			if(response.status == 'ok') {
-				$('#wacab_apps_container').html(response.data.apps);
-				$('#wacab_apps_form_container').html(response.data.form);
-				$('#wacab_apps_form_savebutton').addClass('green');
-			}
-			else {
-				$('#wacab_apps_form_savebutton').removeClass('green').addClass('red');
-			}
-		}, "json");
-	},
-	saveSettings: function(el) {
-		var self = this;
-		form = $(el);
-		var data = form.serialize();
-		$.get("?module=settings&action=save&" + data, function (response) {
-			if(response.status == 'ok') {
-				$('#wacab_settings_form_savebutton').addClass('green');
-			}
-			else {
-				$('#wacab_settings_form_savebutton').removeClass('green').addClass('red');
-			}
-		}, "json");
-	},
-	initDataTable: function() {
-		var self = this;
-		self.dataTable = $('#wacabTransactionsTable').dataTable({
-			"processing": true,
-			"serverSide": true,
-			"order": [[ 0, "desc" ]],
-			"stateSave": true,
-			"pageLength": 50,
-			"columns": [
-				{ "data": "Date" },
-				{ "data": "Before" },
-				{ "data": "Pay" },
-				{ "data": "After" },
-				{ "data": "Order" },
-				{ "data": "App" },
-				{ "data": "Description" }
-			],
-			language: {
-				"processing": "Подождите...",
-				"search": "Поиск:",
-				"lengthMenu": "Показать _MENU_ записей",
-				"info": "Записи с _START_ до _END_ из _TOTAL_ записей",
-				"infoEmpty": "Записи с 0 до 0 из 0 записей",
-				"infoFiltered": "(отфильтровано из _MAX_ записей)",
-				"infoPostFix": "",
-				"loadingRecords": "Загрузка записей...",
-				"zeroRecords": "Записи отсутствуют.",
-				"emptyTable": "В таблице отсутствуют данные",
-				"paginate":
-				{
+                    if (this[actionName + 'Action']) {
+                        this[actionName + 'Action'].apply(this, attr);
+                        // save last page to return to by default later
+                        $.storage.set('site/' + this.domain + '/hash', hash.join('/'));
+                    } else {
+                        if (console) {
+                            console.log('Invalid action name:', actionName+'Action');
+                        }
+                    }
+                } else {
+                    this.defaultAction();
+                }
+            } else {
+                this.defaultAction();
+            }
+        },
 
-					"first": "Первая",
-					"previous": "Предыдущая",
-					"next": "Следующая",
-					"last": "Последняя"
+        defaultAction: function () {
+            var hash = $("div.sidebar ul.menu-v a:first").attr('href');
+            $.wa.setHash(hash);
+        },
+        transactionsAction: function () {
+            this.savePanel(false);
+            $("#content").load('?module=transactions', function () {
+                $.wa.wacab.active($("#s-link-transactions"));
+            });
+        },
+        settingsAction: function () {
+            //alert('settings');
+            this.savePanel(false);
+            $("#content").load('?module=settings', function () {
+                $.wa.wacab.active($("#s-link-settings"));
+            });
+        },
+        reviewsAction: function () {
+            this.savePanel(false);
+            $("#content").load('?module=reviews', function () {
+                $.wa.wacab.active($("#s-link-reviews"));
+            });
+        },
+        appsAction: function () {
+            this.savePanel(false);
+            $("#content").load('?module=apps', function () {
+                $.wa.wacab.active($("#s-link-apps"));
+            });
+        },
+        statisticAction: function () {
+            this.savePanel(false);
+            $("#content").load('?module=statistic', function () {
+                $.wa.wacab.active($("#s-link-stat"));
+            });
+        },
+        agentAction: function () {
+            this.savePanel(false);
+            $("#content").load('?module=agent', function () {
+                $.wa.wacab.active($("#s-link-agent"));
+            });
+        },
+        active: function (el) {
+            $(".menu-li").removeClass('selected');
+            if (el && el.length) {
+                el.addClass('selected');
+            }
+        },
+        savePanel: function (show, add_class) {
+            if (show) {
+                $("#s-save-panel").show();
+                $("#s-save-panel input").removeClass('yellow').addClass('green');
+                $("#wa-editor-status").empty();
+                if (add_class) {
+                    $("#s-save-panel .s-bottom-fixed-bar-content-offset").addClass(add_class);
+                } else {
+                    $("#s-save-panel .s-bottom-fixed-bar-content-offset").attr('class', 's-bottom-fixed-bar-content-offset');
+                }
+            } else {
+                $("#s-save-panel").hide();
+            }
+        },
+        deleteApp: function(id) {
+            $.post("?module=apps&action=delete", {id: id}, function (response) {
+                if(response.status == 'ok') {
+                    $('#wacab_apps_container').html(response.data.apps);
+                    $('#wacab_apps_form_container').html(response.data.form);
+                    $('#wacab_apps_form_savebutton').removeClass('green').removeClass('red');
+                }
+                else {
+                }
+            }, "json");
+        },
+        editApp: function(id) {
+            $.post("?module=apps&action=edit", {id: id}, function (response) {
+                if(response.status == 'ok') {
+                    $('#wacab_apps_container').html(response.data.apps);
+                    $('#wacab_apps_form_container').html(response.data.form);
+                    $('#wacab_apps_form_savebutton').removeClass('green').removeClass('red');
+                }
+                else {
+                }
+            }, "json");
+        },
+        saveApp: function(el) {
+            var self = this;
+            form = $(el);
+            var data = form.serialize();
+            $.get("?module=apps&action=save&" + data, function (response) {
+                if(response.status == 'ok') {
+                    $('#wacab_apps_container').html(response.data.apps);
+                    $('#wacab_apps_form_container').html(response.data.form);
+                    $('#wacab_apps_form_savebutton').addClass('green');
+                }
+                else {
+                    $('#wacab_apps_form_savebutton').removeClass('green').addClass('red');
+                }
+            }, "json");
+        },
+        saveSettings: function(el) {
+            var self = this;
+            form = $(el);
+            var data = form.serialize();
+            $.get("?module=settings&action=save&" + data, function (response) {
+                if(response.status == 'ok') {
+                    $('#wacab_settings_form_savebutton').addClass('green');
+                }
+                else {
+                    $('#wacab_settings_form_savebutton').removeClass('green').addClass('red');
+                }
+            }, "json");
+        },
+        initDataTable: function() {
+            var self = this;
+            self.dataTable = $('#wacabTransactionsTable').dataTable({
+                "processing": true,
+                "serverSide": true,
+                "order": [[ 0, "desc" ]],
+                "stateSave": true,
+                "pageLength": 50,
+                "columns": [
+                    { "data": "Date" },
+                    { "data": "Before" },
+                    { "data": "Pay" },
+                    { "data": "After" },
+                    { "data": "Order" },
+                    { "data": "App" },
+                    { "data": "Description" }
+                ],
+                language: {
+                    "processing": "Подождите...",
+                    "search": "Поиск:",
+                    "lengthMenu": "Показать _MENU_ записей",
+                    "info": "Записи с _START_ до _END_ из _TOTAL_ записей",
+                    "infoEmpty": "Записи с 0 до 0 из 0 записей",
+                    "infoFiltered": "(отфильтровано из _MAX_ записей)",
+                    "infoPostFix": "",
+                    "loadingRecords": "Загрузка записей...",
+                    "zeroRecords": "Записи отсутствуют.",
+                    "emptyTable": "В таблице отсутствуют данные",
+                    "paginate":
+                    {
 
-				},
-				"aria":
-				{
+                        "first": "Первая",
+                        "previous": "Предыдущая",
+                        "next": "Следующая",
+                        "last": "Последняя"
 
-					"sortAscending": ": активировать для сортировки столбца по возрастанию",
-					"sortDescending": ": активировать для сортировки столбца по убыванию"
+                    },
+                    "aria":
+                    {
 
-				}
-			},
-			"ajax": '?module=gettable'
-		});
+                        "sortAscending": ": активировать для сортировки столбца по возрастанию",
+                        "sortDescending": ": активировать для сортировки столбца по убыванию"
 
-		self.dataTable.on( 'draw.dt', function (e, settings) {
-			var api = self.dataTable.api();
-			var data = api.ajax.json();
-			$('#wacab_sum').html(data.sum);
-		});
+                    }
+                },
+                "ajax": {
+                    "url": '?module=gettable',
+                    "data": function ( d ) {
+                        d.startdate = $('#wacab-table-date-min').val();
+                        d.enddate = $('#wacab-table-date-max').val();
+                        if ($('#wacab-table-without-minus').is(':checked')) {
+                            d.no_minus = 1;
+                        }
+                        else {
+                            d.no_minus = 0;
+                        }
+                    }
+                }
+            });
 
-		$('#check-new').click(function(){
-			$('#check-new').hide();
-			$('#iproc').show();
-			$.get('?action=getpaymentjson', function(){
-				$.wa.wacab.dataTable.api().draw();
-				$('#check-new').show();
-				$('#iproc').hide();
-			});
-		});
-	}
-};
+            $('#wacab-table-date-min').datetimepicker({
+                timeFormat: "HH:mm:ss",
+                dateFormat: 'yy-mm-dd',
+                onClose: function( selectedDate ) {
+                    $( "#wacab-table-date-max" ).datepicker( "option", "minDate", selectedDate );
+                }
+            });
+            $('#wacab-table-date-max').datetimepicker({
+                timeFormat: "HH:mm:ss",
+                dateFormat: 'yy-mm-dd',
+                onClose: function( selectedDate ) {
+                    $( "#wacab-table-date-min" ).datepicker( "option", "maxDate", selectedDate );
+                }
+            });
+
+            $('#wacab-table-date-min').change( function() {
+                self.dataTable.api().draw();
+            });
+            $('#wacab-table-date-max').change( function() {
+                self.dataTable.api().draw();
+            });
+            $('#wacab-table-without-minus').change( function() {
+                self.dataTable.api().draw();
+            });
+
+            self.dataTable.on( 'draw.dt', function (e, settings) {
+                var api = self.dataTable.api();
+                var data = api.ajax.json();
+                $('#wacab_sum').html(data.sum);
+            });
+
+            $('#check-new').click(function(){
+                $('#check-new').hide();
+                $('#iproc').show();
+                $.get('?action=getpaymentjson', function(){
+                    $.wa.wacab.dataTable.api().draw();
+                    $('#check-new').show();
+                    $('#iproc').hide();
+                });
+            });
+        }
+    };
 })(jQuery);

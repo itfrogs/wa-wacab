@@ -1,0 +1,320 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: wacab\n"
+"POT-Creation-Date: 2016-11-28 00:54+0300\n"
+"PO-Revision-Date: \n"
+"Last-Translator: wacab\n"
+"Language-Team: wacab\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: .\n"
+"Language: en_US\n"
+"X-Generator: Poedit 1.8.7.1\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPath-1: .\n"
+
+#: /wa-apps/wacab/templates/actions/statistic/stat_page.html:2
+#: /wa-apps/wacab/templates/actions/backend/Backend_page.html:40
+msgid "Statistic"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/statistic/stat_page.html:3
+msgid "Total"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/statistic/stat_page.html:9
+msgid "Total: "
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/statistic/stat_page.html:10
+msgid "Ordered: "
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/statistic/stat_page.html:11
+msgid "Returned: "
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/apps/apps_form.html:4
+msgid "Add new app:"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/apps/apps_form.html:6
+msgid "Edit app "
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/apps/apps_form.html:13
+#: /wa-apps/wacab/templates/actions/apps/apps_table.html:4
+msgid "App ID"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/apps/apps_form.html:18
+msgid "App ID in your account WebAsyst."
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/apps/apps_form.html:23
+#: /wa-apps/wacab/templates/actions/apps/apps_table.html:5
+msgid "App type"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/apps/apps_form.html:26
+msgid "Application"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/apps/apps_form.html:27
+msgid "Plugin"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/apps/apps_form.html:28
+msgid "Widget"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/apps/apps_form.html:29
+msgid "Theme"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/apps/apps_form.html:30
+msgid "Shipping"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/apps/apps_form.html:31
+msgid "Payment"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/apps/apps_form.html:32
+msgid "SMS"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/apps/apps_form.html:36
+msgid "Select the type of Application."
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/apps/apps_form.html:42
+#: /wa-apps/wacab/templates/actions/apps/apps_table.html:6
+msgid "Parent"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/apps/apps_form.html:45
+msgid "No parent"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/apps/apps_form.html:52
+msgid "Select the parrent Application."
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/apps/apps_form.html:59
+msgid "To statistic"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/apps/apps_form.html:62
+#: /wa-apps/wacab/templates/actions/settings/Settings_page.html:39
+msgid "On"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/apps/apps_form.html:63
+#: /wa-apps/wacab/templates/actions/settings/Settings_page.html:40
+msgid "Off"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/apps/apps_form.html:67
+msgid "Included in the statistics."
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/apps/apps_form.html:75
+#: /wa-apps/wacab/templates/actions/apps/apps_table.html:7
+msgid "Name"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/apps/apps_form.html:80
+msgid "App name in your localization."
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/apps/apps_form.html:87
+#: /wa-apps/wacab/templates/actions/settings/Settings_page.html:108
+msgid "Save"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/apps/apps_table.html:8
+msgid "Edit"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/apps/apps_table.html:9
+msgid "Delete"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/apps/apps_page.html:2
+msgid "Apps"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/transactions/Transactions_page.html:2
+#: /wa-apps/wacab/templates/actions/backend/Backend_page.html:43
+msgid "Transactions"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/transactions/Transactions_page.html:12
+msgid "Filters"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/transactions/Transactions_page.html:13
+msgid "Set the start date"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/transactions/Transactions_page.html:14
+msgid "Set the end date"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/transactions/Transactions_page.html:15
+msgid "No negative values"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/transactions/Transactions_page.html:17
+msgid "Output filters."
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/transactions/Transactions_page.html:25
+#: /wa-apps/wacab/templates/actions/transactions/Transactions_page.html:37
+#: /wa-apps/wacab/templates/actions/reviews/reviews_page.html:10
+msgid "Date"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/transactions/Transactions_page.html:26
+#: /wa-apps/wacab/templates/actions/transactions/Transactions_page.html:38
+msgid "Before"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/transactions/Transactions_page.html:27
+#: /wa-apps/wacab/templates/actions/transactions/Transactions_page.html:39
+msgid "Pay"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/transactions/Transactions_page.html:28
+#: /wa-apps/wacab/templates/actions/transactions/Transactions_page.html:40
+msgid "After"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/transactions/Transactions_page.html:29
+#: /wa-apps/wacab/templates/actions/transactions/Transactions_page.html:41
+msgid "Order"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/transactions/Transactions_page.html:30
+#: /wa-apps/wacab/templates/actions/transactions/Transactions_page.html:42
+#: /wa-apps/wacab/templates/actions/reviews/reviews_page.html:11
+msgid "App"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/transactions/Transactions_page.html:30
+#: /wa-apps/wacab/templates/actions/transactions/Transactions_page.html:42
+msgid "Description"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/agent/agent_page.html:2
+msgid "Agent reports"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/reviews/reviews_page.html:2
+#: /wa-apps/wacab/templates/actions/backend/Backend_page.html:46
+msgid "Reviews"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/reviews/reviews_page.html:12
+msgid "Author"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/reviews/reviews_page.html:13
+msgid "Version"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/reviews/reviews_page.html:14
+msgid "Rating"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/reviews/reviews_page.html:15
+msgid "Text"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/reviews/reviews_page.html:16
+msgid "Vote"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/settings/Settings_page.html:2
+#: /wa-apps/wacab/templates/actions/backend/Backend_page.html:55
+msgid "Settings"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/settings/Settings_page.html:8
+msgid "Login"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/settings/Settings_page.html:12
+msgid "Login to WA customer center"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/settings/Settings_page.html:17
+msgid "Password"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/settings/Settings_page.html:21
+msgid "Password\t to WA customer center"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/settings/Settings_page.html:26
+msgid "Account"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/settings/Settings_page.html:30
+msgid "Pay account"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/settings/Settings_page.html:36
+msgid "Counter"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/settings/Settings_page.html:44
+#: /wa-apps/wacab/templates/actions/settings/Settings_page.html:45
+#: /wa-apps/wacab/templates/actions/settings/Settings_page.html:46
+#: /wa-apps/wacab/templates/actions/settings/Settings_page.html:47
+#: /wa-apps/wacab/templates/actions/settings/Settings_page.html:48
+#: /wa-apps/wacab/templates/actions/settings/Settings_page.html:49
+#: /wa-apps/wacab/templates/actions/settings/Settings_page.html:50
+#: /wa-apps/wacab/templates/actions/settings/Settings_page.html:51
+#: /wa-apps/wacab/templates/actions/settings/Settings_page.html:52
+msgid "min"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/settings/Settings_page.html:58
+msgid "Enable counter on icon app"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/settings/Settings_page.html:108
+msgid "Reset link's transactions <-> apps"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/settings/Settings_page.html:109
+msgid "Delete all transactions from DB"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/settings/Settings_page.html:110
+msgid "Delete all reviews from DB"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/settings/Settings_page.html:122
+msgid "Delete all agent reports from DB"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/backend/Backend_page.html:32
+msgid "Main"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/backend/Backend_page.html:37
+msgid "Navigation"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/backend/Backend_page.html:49
+msgid "My Apps"
+msgstr ""
+
+#: /wa-apps/wacab/templates/actions/backend/Backend_page.html:64
+msgid "Main tab"
+msgstr ""
