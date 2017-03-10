@@ -26,12 +26,7 @@
                 unset($pays[0]);
 
                 foreach($pays as $pay){
-                    $check_pay = array(
-                        'date' => $pay['date'],
-                        'order' => $pay['order'],
-                        'description' => $pay['description']
-                    );
-                    $exist_pay = $model->getByField($check_pay);
+                    $exist_pay = $model->getByField($pay);
                     if(count($exist_pay) > 0){
                         break 2;
                     }
