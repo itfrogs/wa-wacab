@@ -2,10 +2,10 @@
 return array(
     'wacab_payment' => array(
         'id' => array('int', 32, 'null' => 0, 'autoincrement' => 1),
-        'date' => array('timestamp', 'null' => 0, 'default' => 'CURRENT_TIMESTAMP'),
-        'before' => array('float', 'null' => 0),
-        'pay' => array('float', 'null' => 0),
-        'after' => array('float', 'null' => 0),
+        'date' => array('datetime', 'null' => 0, 'default' => 'null'),
+        'before' => array('double', 'null' => 0),
+        'pay' => array('double', 'null' => 0),
+        'after' => array('double', 'null' => 0),
         'order' => array('text'),
         'description' => array('text', 'null' => 0),
         'apps_id' => array('int', 11),
