@@ -35,6 +35,9 @@ class wacabWaauth {
         }
         curl_close($ch);
         wa()->getStorage()->set('wacab/data',$this -> data['cookies']);
+        if (waSystemConfig::isDebug()) {
+	       waLog::log('Авторизация', 'wacab.debug.log');
+        }
     }
 
     /**
@@ -71,6 +74,9 @@ class wacabWaauth {
         $header['errno'] = $err;
         $header['errmsg'] = $errmsg;
         $header['content'] = $content;
+        if (waSystemConfig::isDebug()) {
+	       waLog::log('Получение данных: '.$url,'wacab.debug.log');
+        }
         return $header;
     }
 }

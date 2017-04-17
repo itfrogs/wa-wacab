@@ -6,7 +6,7 @@ return array (
     48 => 'img/wacab48.png',
     96 => 'img/wacab96.png',
   ),
-  'version' => '1.1.0',
+  'version' => '1.1.1',
   'vendor' => '123456',
   'frontend' => true,
 );
